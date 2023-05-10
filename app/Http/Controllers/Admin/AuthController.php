@@ -26,14 +26,12 @@ class AuthController extends Controller
 		if ($user) {
 			if ($user->id && $user->is_admin && $user->status == 1 && password_verify($request->get('password'), $user->password)) {
 					Auth::login($user);
-					dd(1);
 					return redirect('/admin');
 				}
 			if ($user->status == 0) {
 				Session::flash('success', 'Tài khoản hiện tại đang bị khóa');
 			}
-		}		
-        dd(2);
+		}
 		return redirect('/admin/auth')
 			->withInput($request->only('email', 'remember'))
 			->withErrors([

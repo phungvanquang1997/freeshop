@@ -174,7 +174,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         //Maatwebsite\Excel\ExcelServiceProvider::class,
-        //Roumen\Sitemap\SitemapServiceProvider::class,
+        Roumen\Sitemap\SitemapServiceProvider::class,
         //Mews\Captcha\CaptchaServiceProvider::class,
         Pqb\FilemanagerLaravel\FilemanagerLaravelServiceProvider::class,
         LaravelCaptcha\Providers\LaravelCaptchaServiceProvider::class,

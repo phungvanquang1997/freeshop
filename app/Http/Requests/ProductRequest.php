@@ -55,10 +55,9 @@ class ProductRequest extends Request
 	protected function getValidatorInstance()
 	{
 		$validator = parent::getValidatorInstance();
-
 		if ($this->exists('images'))
 		{
-			$validator->each('images', ['image']);
+            $validator->addRules(['images.*' => 'image']);
 		}
 
 		return $validator;

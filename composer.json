@@ -20,6 +20,7 @@
         "fakerphp/faker": "^1.9.1",
         "gloudemans/shoppingcart": "@dev",
         "illuminate/html": "@dev",
+        "roumen/sitemap": "@dev",
         "pqb/filemanager-laravel": "@dev",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
@@ -46,6 +47,13 @@
         {
             "type": "path",
             "url": "./packages/pqb/filemanager-laravel",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "./packages/roumen/sitemap",
             "options": {
                 "symlink": true
             }

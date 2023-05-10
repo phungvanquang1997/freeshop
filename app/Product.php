@@ -46,6 +46,7 @@ class Product extends Model
 		'total_sales',
 		'total_views',
 		'special',
+        'stock_status',
 	];
 
 	public function relatedProducts()

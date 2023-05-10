@@ -16,14 +16,14 @@
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('voucher', 'Mã khuyến mại', false) !!}
     <div class="col-sm-7">
-        <input type="text" name="voucher" value="{{ old('voucher') ? old('voucher') : isset($coupon) ? $coupon->voucher : '' }}" class="form-control" placeholder="Tạo tự động" style="text-transform:uppercase" maxlength="6">
+        <input type="text" name="voucher" value="{{ old('voucher') ? old('voucher') : (isset($coupon) ? $coupon->voucher : '') }}" class="form-control" placeholder="Tạo tự động" style="text-transform:uppercase" maxlength="6">
     </div>
 </div>
 
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('name', trans('lang.name'), true) !!}
     <div class="col-sm-7">
-        <input type="text" name="name" class="form-control" value="{{ old('name') ? old('name') : isset($coupon) ? $coupon->name : null }}">
+        <input type="text" name="name" class="form-control" value="{{ old('name') ? old('name') : (isset($coupon) ? $coupon->name : null) }}">
     </div>
 </div>
 
@@ -40,7 +40,7 @@
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('value', 'Giá trị', true) !!}
     <div class="col-sm-7">
-        <input type="number" name="value" value="{{ old('value') ? old('value') : isset($coupon) ? $coupon->value : null }}" class="form-control">
+        <input type="number" name="value" value="{{ old('value') ? old('value') : (isset($coupon) ? $coupon->value : null) }}" class="form-control">
     </div>
 </div>
 <div class="form-group">
@@ -57,19 +57,19 @@
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('num', 'Số lần khuyến mại', true) !!}
     <div class="col-sm-7">
-        <input type="number" name="num" value="{{ old('num') ? old('num') : isset($coupon) ? $coupon->num : null }}" class="form-control">
+        <input type="number" name="num" value="{{ old('num') ? old('num') : (isset($coupon) ? $coupon->num : null) }}" class="form-control">
     </div>
 </div>
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('num_per_user', 'Số lần/một khách', true) !!}
     <div class="col-sm-7">
-        <input type="number" name="num_per_user" value="{{ old('num_per_user') ? old('num_per_user') : isset($coupon) ? $coupon->num_per_user : null }}" class="form-control">
+        <input type="number" name="num_per_user" value="{{ old('num_per_user') ? old('num_per_user') : (isset($coupon) ? $coupon->num_per_user : null) }}" class="form-control">
     </div>
 </div>
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('num_used', 'Số lần đã sử dụng', false) !!}
     <div class="col-sm-7">
-        <input type="number" name="num_used" value="{{ old('num_used') ? old('num_used') : isset($coupon) ? $coupon->num_used : null }}" class="form-control">
+        <input type="number" name="num_used" value="{{ old('num_used') ? old('num_used') : (isset($coupon) ? $coupon->num_used : null) }}" class="form-control">
     </div>
 </div>
 <div class="form-group">

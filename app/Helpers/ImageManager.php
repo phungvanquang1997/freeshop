@@ -36,7 +36,7 @@ class ImageManager
 		$ext = $file->getClientOriginalExtension();
 
 		//random 16 characters
-		$filename = md5(\Str::random()());
+		$filename = md5(\Str::random());
 
 		$folderPath = self::getContainerFolder($type, $filename);
 
