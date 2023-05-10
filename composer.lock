@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dbd39214f36515fd351aa77ee74fed41",
+    "content-hash": "309e95c3efd88788f4c0f19f976c3512",
     "packages": [
         {
             "name": "bonecms/laravel-captcha",
@@ -7839,6 +7839,49 @@
             "time": "2021-02-03T23:26:27+00:00"
         },
         {
+            "name": "roumen/sitemap",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "./packages/roumen/sitemap",
+                "reference": "0755bb1fcfe87325d528ed58304ec282ac5abe89"
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Roumen\\Sitemap": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roumen Damianoff",
+                    "email": "roumen@crimsson.com",
+                    "role": "Developer",
+                    "homepage": "https://roumen.it"
+                }
+            ],
+            "description": "A not so simple sitemap generator for Laravel.",
+            "homepage": "https://roumen.it/projects/laravel-sitemap",
+            "keywords": [
+                "generator",
+                "laravel",
+                "sitemap"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
             "name": "sebastian/cli-parser",
             "version": "2.0.0",
             "source": {
@@ -9184,6 +9227,7 @@
     "stability-flags": {
         "gloudemans/shoppingcart": 20,
         "illuminate/html": 20,
+        "roumen/sitemap": 20,
         "pqb/filemanager-laravel": 20
     },
     "prefer-stable": true,

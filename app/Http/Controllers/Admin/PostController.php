@@ -45,7 +45,7 @@ class PostController extends AdminController {
 	 */
 	public function create()
 	{
-		$data['categories'] = Category::postType()->where('lang_id', $this->lang_id)->lists('name', 'id');
+		$data['categories'] = Category::postType()->where('lang_id', $this->lang_id)->pluck('name', 'id');
 
 		return view('admin.pages.cms.blog.create', $data);
 	}
@@ -130,7 +130,7 @@ class PostController extends AdminController {
 	{
 		$data['blog'] = Post::find($id);
 
-		$data['categories'] = Category::postType()->where('lang_id', $this->lang_id)->lists('name', 'id');
+		$data['categories'] = Category::postType()->where('lang_id', $this->lang_id)->pluck('name', 'id');
 
 		return view('admin.pages.cms.blog.edit', $data);
 	}
