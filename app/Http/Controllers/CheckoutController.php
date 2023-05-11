@@ -78,6 +78,7 @@ class CheckoutController extends BaseController
 
 		//Normal Order
 		$data = $request->all();
+		$data['note'] = $data['note'] ?? '';
 		$data['discount'] = 0;
 		if ($data['p_cart_coupon'] != '') {
 			$coupon = Coupons::query()->where('voucher', $data['p_cart_coupon'])->whereDate('start_date', '<=', date('Y-m-d'))->whereDate('end_date', '>=', date('Y-m-d'))->where('status', 1)->first();
@@ -97,9 +98,18 @@ class CheckoutController extends BaseController
 		}
 		$data['total_amount'] = Cart::total();
     	$data['status'] = Order::ORDER_PENDING;
+
     	if (Auth::guest()) {
+            $data['user_id'] = 0;
+            $data['email'] = '';
+            $data['deposit_value'] = 0;
+            $data['shipping_cost'] = 0;
     		$order = Order::create($data);
     	} else {
+            $data['user_id'] = $user->id;
+            $data['email'] = $user->email;
+            $data['deposit_value'] = 0;
+            $data['shipping_cost'] = 0;
     		$order = $user->orders()->create($data);
     	}
 		

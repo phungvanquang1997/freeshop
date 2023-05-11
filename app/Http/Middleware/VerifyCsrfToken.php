@@ -1,17 +1,50 @@
 <?php
-
 namespace App\Http\Middleware;
 
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
+use Closure;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 
-class VerifyCsrfToken extends Middleware
+class VerifyCsrfToken extends BaseVerifier
 {
+
+    public function handle($request, Closure $next)
+    {
+        if ($this->excludedRoutes($request))
+        {
+            return $this->addCookieToResponse($request, $next($request));
+        }
+
+        return parent::handle($request, $next);
+    }
+
     /**
-     * The URIs that should be excluded from CSRF verification.
+     * Function check if request is an API, then pass the CSRF verification
      *
-     * @var array<int, string>
+     * @param $request
+     * @return bool
      */
-    protected $except = [
-        //
-    ];
+    protected function excludedRoutes($request)
+    {
+        $disabledList = [
+            'api/product/store',
+            'admin/product/generate-slug',
+            'admin/category/generate-slug',
+            'admin/category/get-attribute',
+            'admin/brand/generate-slug',
+            'cart/add',
+            'cart/update-menu',
+            'cart/update-qty',
+            'cart/remove/*',
+        ];
+        foreach ($disabledList as $uri)
+        {
+            if ($request->is($uri))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }
