@@ -98,21 +98,19 @@ class CheckoutController extends BaseController
 		}
 		$data['total_amount'] = Cart::total();
     	$data['status'] = Order::ORDER_PENDING;
+        $data['deposit_value'] = 0;
+        $data['shipping_cost'] = 0;
 
     	if (Auth::guest()) {
             $data['user_id'] = 0;
             $data['email'] = '';
-            $data['deposit_value'] = 0;
-            $data['shipping_cost'] = 0;
-    		$order = Order::create($data);
     	} else {
             $data['user_id'] = $user->id;
             $data['email'] = $user->email;
-            $data['deposit_value'] = 0;
-            $data['shipping_cost'] = 0;
-    		$order = $user->orders()->create($data);
     	}
-		
+
+        $order = Order::create($data);
+
         if ($order) {
     		$cart = Cart::content();
     		foreach ($cart as $item) {
