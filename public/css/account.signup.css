@@ -1,0 +1,154 @@
+body {
+	color: #000000;
+	font-family: 'Roboto', sans-serif;
+}
+a {
+    color: #ed145b;
+    outline: 0;
+}
+/**
+  * CSS for form register
+  */
+.bg-authentication {
+	background: url('../images/bgdot-top.png') top left repeat-x;
+}
+.box-authentication form .form-control {
+    border: 1px solid #ccc;
+    height: 45px;
+    padding: 12px 15px;
+    background: #fff;
+    -ms-border-radius: 0;
+    border-radius: 0;
+    margin: 0;
+    box-shadow: none;
+}
+.box-authentication form label.field-name {
+	display: block;
+    font-size: 15px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+.border-gray-right {
+	border-right: 1px solid #ccc;
+}
+.box-authentication > h3 > span{
+	display: inline-block;
+    background: #fff;
+    text-transform: uppercase;
+    font-size: 26px;
+    padding-right: 15px;
+}
+.box-authentication > h3 {
+    background: url(../images/bg-line-1.png) 0 50% repeat-x;
+    font-family: Roboto;
+    font-weight: 400;
+    margin: 30px 0 15px;
+}
+.box-authentication .remember {
+	padding-left: 20px;
+    margin: 0;
+}
+.box-authentication button.btn:hover,
+.box-authentication button.btn {
+    height: 44px;
+    font-size: 16px;
+    background-size: cover;
+    line-height: 18px;
+}
+.box-authentication	.form-group p.forget-text,
+.box-authentication	.form-group p.forget-text a {
+	vertical-align: bottom;
+    margin: 5px 0 0 0;
+}
+.auth-sociallogin ul > li {
+	margin-bottom: 10px;
+}
+
+/* for account page **/
+.forget-password,
+.page-account {
+    background: url('../images/bgdot-top.png') repeat-x top left;
+    padding-bottom: 50px;
+}
+.forget-password .page-heading span.page-heading-title2,
+.page-account .page-heading span.page-heading-title2 {
+    display: inline-block;
+    background: #fff;
+    text-transform: uppercase;
+    font-size: 26px;
+    padding-right: 15px;
+}
+.forget-password h2.page-heading,
+.page-account h2.page-heading {
+    background: url(../images/bg-line-1.png) 0 50% repeat-x;
+    font-family: Roboto;
+    font-weight: 400;
+}
+.page-account .panel {
+    background: transparent;
+}
+@media (max-width: 767px){
+    .page-account .form-group .talign-r{
+        text-align: left;
+    }
+}
+.page-account .form-group .talign-r{
+    text-align: right;
+    margin: 0;
+    padding: 12px;
+}
+.account-sidebar a.btn-primary {
+    background: #111;
+    color: white;
+}
+.detail-product-order .image-box img {
+    float: left;
+    margin-right: 10px;
+}
+.detail-product-order .image-box {
+    font-weight: bold;
+}
+.profile-form .form-group label,
+.password-form .form-group label {
+    display: inline-block;
+}
+.asterisk {
+    color:red;
+}
+
+.news-detail .news-title > h1 {
+    font-size: 20px;
+    margin: 15px 0 5px 0;
+}
+
+#header {
+    background: url(../images/bg-top.png) top left repeat-x;
+}
+a:hover {
+    text-decoration: none;
+}
+
+.about-menu ul > li > a {
+    text-transform: uppercase;
+    font-size: 13px;
+    padding: 10px 0;
+}
+.about-menu ul > li {
+    border-bottom: 1px solid #ccc;
+}
+.about-menu ul.dropdown-menu {
+    display: block!important;
+    position: static;
+    box-shadow: none;
+    border: none;
+    min-width: 100%;
+    background: 0 0;
+}
+.about-menu ul > li.active > a {
+    background: transparent;
+    font-weight: bold;
+    color: #333;
+}
+#header .topbar .right .block .expandcontact .hotline .phone {
+    font-size: 21px;
+}

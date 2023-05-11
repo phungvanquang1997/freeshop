@@ -1,0 +1,28 @@
+.box-footer .title-row {
+	clear: both;
+}
+.footer-nav {
+	width: 100%;
+}
+@media (max-width: 480px) {
+	#cfacebook {
+		right: 0!important;
+		left: 0!important;
+		width: auto!important;
+	}
+	#cfacebook .fchat .fb-page,
+	#cfacebook .fchat .fb-page > span,
+	#cfacebook iframe {
+		width: 100%!important;
+	}
+	._2p3a,
+    #cfacebook ._2p3a {
+    	width: 100%;
+    }
+    .box-new-news .list-news-new .news-item {
+    	width: 50%;
+    }
+}
+.form-group textarea.form-control {
+	height: auto;
+}

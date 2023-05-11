@@ -19,25 +19,29 @@ class CartController extends BaseController
 	 */
 	public function index()
 	{
-		$cart = Cart::content();
-		$total = Cart::total();
-		$shipping = 0;
-		$discount = 0;
-		$gross = $total + $shipping - $discount;
-		$hotline = Setting::findValueByKey('hotline');
-		$data = [
-			'cart' => $cart,
-			'total' => $total,
-			'shipping' => $shipping,
-			'discount' => $discount,
-			'gross' => $gross,
-			'hotline' => $hotline,
-		];
+	    try {
+            $cart = Cart::content();
+            $total = Cart::total();
+            $shipping = 0;
+            $discount = 0;
+            $gross = $total + $shipping - $discount;
+            $hotline = Setting::findValueByKey('hotline');
+            $data = [
+                'cart' => $cart,
+                'total' => $total,
+                'shipping' => $shipping,
+                'discount' => $discount,
+                'gross' => $gross,
+                'hotline' => $hotline,
+            ];
 
-		$metas_detail = [
-			'meta_title_detail' => 'Giỏ hàng',			
-		];
-		$data = array_merge($data, $metas_detail);
+            $metas_detail = [
+                'meta_title_detail' => 'Giỏ hàng',
+            ];
+            $data = array_merge($data, $metas_detail);
+        } catch (\Exception $e) {
+	        dd($e);
+        }
 		return view('web.pages.cart.list', $data);
 	}
 
@@ -77,22 +81,26 @@ class CartController extends BaseController
 			'note' => $request->get('note'),
 			'sku' => $request->get('sku'),
 		];
-			
-		Cart::add([
-			'id' => $request->get('id'),
-			'name' => $request->get('name'),
-			'qty' => $request->get('qty') != '' ? (int) $request->get('qty') : 1,
-			'price' => (float) $request->get('price'),
-			'options' => $options,
-		]);
 
-		if (Session::has('cart-add') && Session::get('cart-add') == 'success')
-		{
-			return 'success';
-		} else
-		{
-			return 'error';
-		}
+		try {
+            Cart::add([
+                'id' => $request->get('id'),
+                'name' => $request->get('name'),
+                'qty' => $request->get('qty') != '' ? (int)$request->get('qty') : 1,
+                'price' => (float)$request->get('price'),
+                'options' => $options,
+            ]);
+            return 'success';
+        } catch (\Exception $e) {
+            return 'error';
+        }
+//		if (Session::has('cart-add') && Session::get('cart-add') == 'success')
+//		{
+//			return 'success';
+//		} else
+//		{
+//			return 'error';
+//		}
 	}
 
 	/**

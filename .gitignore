@@ -2,7 +2,9 @@
 /node_modules
 /public/build
 /public/hot
-/public
+/public/uploads
+/public/hoccss
+/public/filemanager
 /storage/*.key
 /vendor
 .env
