@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet href="https://thoitrangred.com/vendor/sitemap/styles/sitemapindex.xsl" type="text/xsl"?>
+<?xml-stylesheet href="https://phukiensitphcm.com/vendor/sitemap/styles/sitemapindex.xsl" type="text/xsl"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<sitemap>
-		<loc>https://thoitrangred.com/sitemap-products.xml</loc>
+		<loc>https://phukiensitphcm.com/sitemap-products.xml</loc>
 		</sitemap>
 	<sitemap>
-		<loc>https://thoitrangred.com/sitemap-posts.xml</loc>
+		<loc>https://phukiensitphcm.com/sitemap-posts.xml</loc>
 		</sitemap>
 	<sitemap>
-		<loc>https://thoitrangred.com/sitemap-category.xml</loc>
+		<loc>https://phukiensitphcm.com/sitemap-category.xml</loc>
 		</sitemap>
 	<sitemap>
-		<loc>https://thoitrangred.com/sitemap-pages.xml</loc>
+		<loc>https://phukiensitphcm.com/sitemap-pages.xml</loc>
 		</sitemap>
 </sitemapindex>

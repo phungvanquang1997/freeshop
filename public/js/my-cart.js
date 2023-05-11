@@ -44,7 +44,6 @@ $(document).ready(function($)
             color: color,
             note: note,
             sku: sku,
-            _token: $('meta[name="csrf-token"]').attr('content')
         };
         
         $.post('/cart/add', data, function(data) {
