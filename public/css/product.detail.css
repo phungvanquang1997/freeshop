@@ -1,0 +1,40 @@
+.no-padding {
+	padding: 0;
+}
+.breadcrumb {
+	padding: 0;
+}
+.breadcrumb>ul {
+	padding-bottom: 0;
+}
+.product-detail .top-detail .caption>.option select.item_option_se {
+	width: 140px;
+}
+.product-detail .top-detail .caption>.option div.color,
+.product-detail .top-detail .caption>.option div.size {
+	margin-bottom: 20px;
+}
+.rating-container .star {
+	font-size: 25px;
+}
+.rating-xs {
+	font-size: 1em!important;
+}
+
+.comment-rating .rating-container .star {
+	font-size: 14px;
+	margin: 0 1px;
+}
+
+.comment-list .comment-item .comment-content {
+    padding: 5px 10px 10px!important;
+    min-height: 0!important;
+    margin-bottom: 0!important;
+}
+.comment-list .comment-item .comment-child-section {
+	padding: 0 10px;
+}
+.product-detail .comment {
+	background: transparent;
+	padding-bottom: 20px;
+}

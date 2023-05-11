@@ -1,0 +1,3 @@
+User-agent: *
+Sitemap: https://thoitrangred.com/sitemap.xml
+Disallow:
