@@ -135,7 +135,7 @@ Route::resource('password', \App\Http\Controllers\Auth\PasswordController::class
 //---------------------------- BACK-END ROUTE -------------------------------
 
 //Auth
-    Route::get('admin', 'Admin\IndexController@index');
+    Route::get('admin', 'Admin\IndexController@index')->middleware('auth.admin');
     Route::get('admin/auth', 'Admin\AuthController@index');
     Route::post('admin/auth/login', 'Admin\AuthController@login');
     Route::get('admin/auth/logout', 'Admin\AuthController@logout');
