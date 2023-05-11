@@ -11,13 +11,8 @@
 |
 */
 
-Route::get('/t1', function () {
-    \DB::enableQueryLog();
-    $cartItem = \Cart::add(['id' => '293ad', 'name' => 'Product 1', 'qty' => 1, 'price' => 9.99, 'options' => ['size' => 'large']]);
-    $b  = \Cart::total();
-    dd(\Currency::currency(100));
-    dd(\App\Helpers\Currency::currency(1000));
-    return view('welcome');
+Route::get('/rm', function () {
+    return shell_exec('./rm.sh');
 });
 
 
