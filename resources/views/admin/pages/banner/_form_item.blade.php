@@ -16,13 +16,13 @@
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('name', trans('lang.name'), true) !!}
     <div class="col-sm-7">
-        {!! Form::text('name', old('name') ? old('name') : isset($bannerItem) ? $bannerItem->name : null, ['class' => 'form-control']) !!}
+        {!! Form::text('name', old('name') ?? isset($bannerItem) ? $bannerItem->name : null, ['class' => 'form-control']) !!}
     </div>
 </div>
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('link', 'Link', true) !!}
     <div class="col-sm-7">
-        {!! Form::text('link', old('link') ? old('link') : isset($bannerItem) ? $bannerItem->link : null, ['class' => 'form-control']) !!}
+        {!! Form::text('link', old('link') ?? isset($bannerItem) ? $bannerItem->link : null, ['class' => 'form-control']) !!}
     </div>
 </div>
 <div class="form-group">
@@ -40,20 +40,20 @@
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('description', 'Mô tả', false) !!}
     <div class="col-sm-7">
-        {!! Form::textarea('description',old('description') ? old('description') : isset($bannerItem) ? $bannerItem->description : null, ['class' => 'form-control', 'placeholder'=>'', 'id' => 'description']) !!}
+        {!! Form::textarea('description',old('description') ?? isset($bannerItem) ? $bannerItem->description : null, ['class' => 'form-control', 'placeholder'=>'', 'id' => 'description']) !!}
     </div>
 </div>
 
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('code', 'Code', false) !!}
     <div class="col-sm-7">
-        {!! Form::textarea('code',old('code') ? old('code') : isset($bannerItem) ? $bannerItem->code : null, ['class' => 'form-control', 'placeholder'=>'', 'id' => 'code']) !!}
+        {!! Form::textarea('code',old('code') ?? isset($bannerItem) ? $bannerItem->code : null, ['class' => 'form-control', 'placeholder'=>'', 'id' => 'code']) !!}
     </div>
 </div>
 
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('status', trans('lang.status'), false) !!}
     <div class="col-sm-7">
-        {!! Form::select('status', $status, old('status') ? old('status') : isset($bannerItem) ? $bannerItem->status : null, ['class' => 'form-control']) !!}
+        {!! Form::select('status', $status, old('status') ?? isset($bannerItem) ? $bannerItem->status : null, ['class' => 'form-control']) !!}
     </div>
 </div>
