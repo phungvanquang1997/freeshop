@@ -1,0 +1,12 @@
+1. composer install
+
+2. extract 'files_lar5_to_lar10.rar'
+
+3.  run 2 commands belows: 
+
+ cp -r ./Pagination/* vendor/laravel/framework/src/Illuminate/Pagination
+ cp -r ./ContractsPagination/* vendor/laravel/framework/src/Illuminate/Contracts/Pagination
+
+-b : backup file
+
+
