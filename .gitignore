@@ -1,10 +1,5 @@
 /.phpunit.cache
 /node_modules
-# /public/build
-# /public/hot
-# /public/uploads
-# /public/hoccss
-# /public/filemanager
 /public
 /storage/*.key
 /vendor
