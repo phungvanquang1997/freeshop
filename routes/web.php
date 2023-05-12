@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/rm', function () {
-    return shell_exec('./rm.sh');
-});
+// Route::get('/rm', function () {
+//     return shell_exec('./rm.sh');
+// });
 
 
 
