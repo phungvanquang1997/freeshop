@@ -4,8 +4,8 @@
 
 3.  run 2 commands belows: 
 
- mv -b Pagination/ vendor/laravel/framework/src/Illuminate/Pagination
- mv -b ContractsPagination vendor/laravel/framework/src/Illuminate/Contracts/Pagination
+ cp -r ./Pagination/* vendor/laravel/framework/src/Illuminate/Pagination
+ cp -r ./ContractsPagination/* vendor/laravel/framework/src/Illuminate/Contracts/Pagination
 
 -b : backup file
 
