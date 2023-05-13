@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Auth;
 use Illuminate\Contracts\Auth\Guard;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
@@ -40,8 +41,9 @@ class GoogleController extends Controller {
 				}
 			}
 	
+			Auth::loginUsingId($user->id);
 			// $this->auth->login($user, true);
-			
+
 	
 			return redirect('/');
 		}

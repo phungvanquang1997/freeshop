@@ -30,9 +30,16 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+
+    'google' => [
+        'client_id'     => env('GP_ID', ''),
+        'client_secret' => env('GP_SECRET', ''),
+        'redirect'      => env('GP_REDIRECT', ''),
+    ],
+
     'facebook' => [
         'client_id' => env('FB_ID', ''), //USE FROM FACEBOOK DEVELOPER ACCOUNT
         'client_secret' => env('FB_SECRET', ''), //USE FROM FACEBOOK DEVELOPER ACCOUNT
-        'redirect' => 'http://phukiensi.test/facebook/callback/'
+        'redirect' => env('FB_REDIRECT', '')
     ],
 ];
