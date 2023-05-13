@@ -24,29 +24,29 @@ class ProductController extends AdminController
 		$data = [];
 
 		//Get category options
-		$categories = Category::getCategoryOption(Category::CATEGORY_PRODUCT, 0, \Input::get('category_id'));
+		$categories = Category::getCategoryOption(Category::CATEGORY_PRODUCT, 0, \request()->get('category_id'));
 		$data['categories'] = $categories;
 
 		//Get Products
 		$query = Product::query();
-		if (\Input::has('name')) {
-			if (\Input::get('name') != '') {
-				$query->where('name', 'like', '%' . strtolower(\Input::get('name')) . '%');
+		if (\request()->has('name')) {
+			if (\request()->get('name') != '') {
+				$query->where('name', 'like', '%' . strtolower(\request()->get('name')) . '%');
 			}			
 		}
 
-		if (\Input::has('category_id')) {
-			if (\Input::get('category_id') > 0) {
-				$strIds = Category::categoriesIds(\Input::get('category_id'));
+		if (\request()->has('category_id')) {
+			if (\request()->get('category_id') > 0) {
+				$strIds = Category::categoriesIds(\request()->get('category_id'));
 				$arrayID = @array_map('intval', @explode(',', $strIds));
 				$query->whereIn('category_id', $arrayID);
-				//$query->where('category_id', '=', Input::get('category_id'));	
+				//$query->where('category_id', '=', request()->get('category_id'));	
 			}			
 		}
 
-		if (\Input::has('status')) {
-			if (in_array(\Input::get('status'), [0,1])) {
-				$query->where('status', '=', \Input::get('status'));
+		if (\request()->has('status')) {
+			if (in_array(\request()->get('status'), [0,1])) {
+				$query->where('status', '=', \request()->get('status'));
 			}			
 		}
 
@@ -317,9 +317,9 @@ class ProductController extends AdminController
 	{
 
 		$slug = '';
-		$name = trim(Input::get('name'));
-		$formType = trim(Input::get('formType'));
-		$postId = trim(Input::get('postId'));
+		$name = trim(request()->get('name'));
+		$formType = trim(request()->get('formType'));
+		$postId = trim(request()->get('postId'));
 		if ($name !== '')
 		{
 			$slug = \Str::slug($name);

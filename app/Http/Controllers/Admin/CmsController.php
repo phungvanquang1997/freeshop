@@ -12,25 +12,25 @@ class CmsController extends AdminController {
 	public function contact()
 	{
 		$query = Contact::orderBy('created_at', 'desc');
-		if (Input::has('type'))
+		if (request()->has('type'))
 		{
-			$query->where('type', Input::get('type'));
+			$query->where('type', request()->get('type'));
 		}
-		if (Input::has('name'))
+		if (request()->has('name'))
 		{
-			$query->where('name', 'like', '%'.Input::get('name').'%');
+			$query->where('name', 'like', '%'.request()->get('name').'%');
 		}
-		if (Input::has('email'))
+		if (request()->has('email'))
 		{
-			$query->where('email', 'like', '%'.Input::get('email').'%');
+			$query->where('email', 'like', '%'.request()->get('email').'%');
 		}
-		if (Input::has('phone'))
+		if (request()->has('phone'))
 		{
-			$query->where('phone', 'like', '%'.Input::get('phone').'%');
+			$query->where('phone', 'like', '%'.request()->get('phone').'%');
 		}
-		if (Input::has('content'))
+		if (request()->has('content'))
 		{
-			$query->where('content', 'like', '%'.Input::get('content').'%');
+			$query->where('content', 'like', '%'.request()->get('content').'%');
 		}
 		$data['contacts'] = $query->get();
 		return view('admin.pages.contact.list', $data);

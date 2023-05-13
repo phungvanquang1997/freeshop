@@ -26,7 +26,7 @@
             <div class="row no-padding filter-container">
                 {!! Form::open(['method' => 'GET', 'url' => url('admin/category/article')]) !!}
                 <div class="col-sm-2">
-                    <input name="name" type="text" class=" form-control" value="{{ Input::has('name') ? Input::get('name') : '' }}" placeholder="Tên danh mục">
+                    <input name="name" type="text" class=" form-control" value="{{ request()->has('name') ? request()->get('name') : '' }}" placeholder="Tên danh mục">
                 </div>    
                 <div class="col-sm-2">
                     <button type="submit" class="btn btn-primary">Tìm kiếm</button>

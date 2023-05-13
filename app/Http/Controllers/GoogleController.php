@@ -24,30 +24,31 @@ class GoogleController extends Controller {
 	{
 		try {
 		    $gg_user = Socialite::driver('google')->user();
-		}
-		catch (GuzzleHttp\Exception\ClientException $e) {
 
-		    dd($e->response);
-		}
-
-		$user = User::where('email', $gg_user->getEmail())->first();
-		if (!$user) {
-			$info = array(
-				'email'  => $gg_user->getEmail(),
-				'name'   => $gg_user->getName(),
-				'auth_token' => Str::random(16),
-			);
-			$user = User::create($info);
-		} else {
-			if ($user->name != $gg_user->getName()) {
-				$user->name = $gg_user->getName();
-				$user->save();
+			$user = User::where('email', $gg_user->getEmail())->first();
+			if (!$user) {
+				$info = array(
+					'email'  => $gg_user->getEmail(),
+					'name'   => $gg_user->getName(),
+					'auth_token' => Str::random(16),
+				);
+				$user = User::create($info);
+			} else {
+				if ($user->name != $gg_user->getName()) {
+					$user->name = $gg_user->getName();
+					$user->save();
+				}
 			}
+	
+			// $this->auth->login($user, true);
+			
+	
+			return redirect('/');
 		}
+		catch (\Exception $e) {
 
-		$this->auth->login($user, true);
-
-		return redirect('/');
+		    dd($e->getMessage());
+		}
 	}
 
 }

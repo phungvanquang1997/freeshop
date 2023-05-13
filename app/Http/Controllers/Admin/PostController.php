@@ -25,13 +25,13 @@ class PostController extends AdminController {
 
 		$query = Post::query();
 		$query->where('lang_id', $this->lang_id);
-		if (Input::has('name')) {
-			if (Input::get('name') != '') {				
-				$query->where('title', 'like', '%' . trim(Input::get('name')) . '%');
+		if (request()->has('name')) {
+			if (request()->get('name') != '') {				
+				$query->where('title', 'like', '%' . trim(request()->get('name')) . '%');
 			}			
 		}		
-		if (Input::has('category_id')) $query->where('category_id', Input::get('category_id'));
-		if (Input::has('special')) $query->where('special', Input::get('special'));
+		if (request()->has('category_id')) $query->where('category_id', request()->get('category_id'));
+		if (request()->has('special')) $query->where('special', request()->get('special'));
 
 		$data['blogs'] = $query->orderBy('created_at', 'desc')->get();
 
@@ -222,8 +222,8 @@ class PostController extends AdminController {
 	public function generateSlug()
 	{
 		$slug = '';
-		$title = trim(Input::get('title'));
-		$postId = trim(Input::get('postId'));
+		$title = trim(request()->get('title'));
+		$postId = trim(request()->get('postId'));
 		if ($title !== '')
 		{
 			$slug = \Str::slug($title);

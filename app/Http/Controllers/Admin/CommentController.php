@@ -14,25 +14,25 @@ class CommentController extends AdminController
 	public function index()
 	{
 		$query = Comment::orderBy('created_at', 'desc');
-		if (Input::has('status'))
+		if (request()->has('status'))
 		{
-			$query->where('status', Input::get('status'));
+			$query->where('status', request()->get('status'));
 		}
-		if (Input::has('product'))
+		if (request()->has('product'))
 		{
-			$query->where('post_id', Input::get('product'));
+			$query->where('post_id', request()->get('product'));
 		}
-		if (Input::has('name'))
+		if (request()->has('name'))
 		{
-			$query->where('name', 'like', '%'.Input::get('name').'%');
+			$query->where('name', 'like', '%'.request()->get('name').'%');
 		}
-		if (Input::has('email'))
+		if (request()->has('email'))
 		{
-			$query->where('email', 'like', '%'.Input::get('email').'%');
+			$query->where('email', 'like', '%'.request()->get('email').'%');
 		}
-		if (Input::has('content'))
+		if (request()->has('content'))
 		{
-			$query->where('content', 'like', '%'.Input::get('content').'%');
+			$query->where('content', 'like', '%'.request()->get('content').'%');
 		}
 		$data['comments'] = $query->get();
 		return view('admin.pages.comment.list', $data);

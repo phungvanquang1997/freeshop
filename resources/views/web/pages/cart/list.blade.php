@@ -212,6 +212,8 @@
                     method : 'post',
                     data : {voucher:voucher, _token:_token},
                     success : function(res){
+                        console.log(res);
+                        // return;
                         var res = $.parseJSON(res);
                         if (res.code == 1) {
                             $('.cart_discount_amount').html(res.discount);

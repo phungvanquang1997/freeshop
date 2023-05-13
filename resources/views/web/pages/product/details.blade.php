@@ -9,7 +9,18 @@
 @stop
 
 @section('content')
-    <div id="main" style="padding-top: 30px;">      
+    <div id="main" style="padding-top: 30px;">
+        @if (count($sliders) > 0)
+            <div class="feature-adv">
+                <div class="slider">
+                    <ul>
+                        @foreach($sliders as $item)
+                        <li><a href="{{ $item->link }}" title="{{ $item->name }}"><img src="{{ \App\Helpers\MyHtml::showImage($item->image, 'banner') }}" alt="{{ $item->name }}" /></a></li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        @endif
         <div class="container">
             <div class="body_right" id="body_right">
                 <div class="header-info-fix" style="display: none;">
@@ -61,7 +72,11 @@
                                         <div class="inner">
                                             <ul>
                                                 @foreach ($images as $image)
-                                                <li><a href="{{ \App\Helpers\MyHtml::showImage($image->image, 'product', 'small') }}" title="{!! $product->name !!}"><img src="{{ \App\Helpers\MyHtml::showThumb($image->image, 'product', 'small') }}" alt="{!! $product->name !!}" title="{!! $product->name !!}"><span class="frame"></span></a></li>
+                                                <li>
+                                                    <a href="{{ \App\Helpers\MyHtml::showImage($image->image, 'product', 'small') }}" title="{!! $product->name !!}">
+                                                        <img src="{{ \App\Helpers\MyHtml::showThumb($image->image, 'product', 'small') }}" alt="{!! $product->name !!}" title="{!! $product->name !!}"><span class="frame"></span>
+                                                    </a>
+                                                </li>
                                                 @endforeach
                                             </ul>
                                         </div>

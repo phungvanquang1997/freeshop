@@ -151,8 +151,8 @@ class PageController extends AdminController {
 	public function generateSlug()
 	{
 		$slug = '';
-		$title = trim(Input::get('title'));
-		$postId = trim(Input::get('postId'));
+		$title = trim(request()->get('title'));
+		$postId = trim(request()->get('postId'));
 		if ($title !== '')
 		{
 			$slug = \Str::slug($title);

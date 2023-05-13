@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    
+    //displayImg();
     var ordered_number = $('.ordered_number').first().text();
     var total_comment = 0;
     var total_order = 0;
@@ -255,4 +257,13 @@ $(document).ready(function () {
             total_order = data.total_order;
         });
     }
+
 });
+
+function displayImg () {
+    $('.thumbs .inner ul li').on('click', function (e) {
+        e.preventDefault();
+        console.log($(this).length);
+        alert(4243);
+    })
+}

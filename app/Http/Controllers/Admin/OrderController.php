@@ -25,24 +25,24 @@ class OrderController extends AdminController
 	public function index()
 	{
 		$query = Order::query();
-		if (Input::has('orderId') && Input::get('orderId') != '') {
-			$query->where('id', '=', Input::get('orderId'));
+		if (request()->has('orderId') && request()->get('orderId') != '') {
+			$query->where('id', '=', request()->get('orderId'));
 		}
 
-		if (Input::has('status') && Input::get('status') != '') {
-			$query->where('status', Input::get('status'));
+		if (request()->has('status') && request()->get('status') != '') {
+			$query->where('status', request()->get('status'));
 		}
 
-		if (Input::has('fullname') && Input::get('fullname') != '') {			
-			$query->where('LOWER(name)', 'like', '%' . strtolower(trim(Input::get('fullname'))) . '%');
+		if (request()->has('fullname') && request()->get('fullname') != '') {			
+			$query->where('LOWER(name)', 'like', '%' . strtolower(trim(request()->get('fullname'))) . '%');
 		}
 
-		if (Input::has('phone') && Input::get('phone') != '') {
-			$query->where('phone', 'like', '%' . trim(Input::get('phone')) . '%');
+		if (request()->has('phone') && request()->get('phone') != '') {
+			$query->where('phone', 'like', '%' . trim(request()->get('phone')) . '%');
 		}
 
-		if (Input::has('date')) {
-			$date = explode('-', Input::get('date'));
+		if (request()->has('date')) {
+			$date = explode('-', request()->get('date'));
 			$date[0] = str_replace('/', '-', $date[0]);
 			if (isset($date[1])) {
 				$date[1] = str_replace('/', '-', $date[1]);					

@@ -18,8 +18,8 @@ class ProductCategoryController extends AdminController
 
 		$lang_id = $this->lang_id;
 		$query = Category::query();
-		if (\Input::has('name')) {
-			$query->where('name', 'like', '%' . \Input::get('name') . '%');
+		if (\request()->has('name')) {
+			$query->where('name', 'like', '%' . \request()->get('name') . '%');
 		}		
 		$query->productType();
 		$data['categories'] = $query->where('lang_id', $lang_id)->orderBy('order', 'asc')->get();
@@ -89,7 +89,7 @@ class ProductCategoryController extends AdminController
 	public function generateSlug()
 	{
 		$slug = '';
-		$name = trim(\Input::get('name'));
+		$name = trim(\request()->get('name'));
 		if ($name !== '') {
 			if ($this->lang_id == 'cn') {
 				$slug = $name;

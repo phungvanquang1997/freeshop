@@ -21,7 +21,7 @@ class UserController extends AdminController
 	{
 		$query = User::query();
 
-		if (Input::has('is_admin') && Input::get('is_admin') == User::IS_ADMIN) {
+		if (request()->has('is_admin') && request()->get('is_admin') == User::IS_ADMIN) {
 			$query->where('is_admin', User::IS_ADMIN);
 			if(Auth::user()->group != User::IS_ADMINISTRATOR) {
 				Session::flash('error', 'Bạn không có quyền truy cập');
@@ -31,18 +31,18 @@ class UserController extends AdminController
 			$query->where('is_admin', '<>', User::IS_ADMIN);
 		}
 		
-		if (Input::has('status')) {
-			$query->where('status', Input::get('status'));
+		if (request()->has('status')) {
+			$query->where('status', request()->get('status'));
 		}
 
-		if (Input::has('user_name'))
+		if (request()->has('user_name'))
 		{
-			$query->where('users.name', 'like', '%'.Input::get('user_name').'%');
+			$query->where('users.name', 'like', '%'.request()->get('user_name').'%');
 		}
 
-		if (Input::has('user_email'))
+		if (request()->has('user_email'))
 		{
-			$query->where('users.email', 'like', '%'.Input::get('user_email').'%');
+			$query->where('users.email', 'like', '%'.request()->get('user_email').'%');
 		}
 
 		$data['users'] = $query->orderBy('created_at', 'desc')->get();
@@ -58,18 +58,18 @@ class UserController extends AdminController
 
 		$query = Order::query();
 		$query->where('user_id', $id);
-		if (Input::has('orderId') && Input::get('orderId') != '')
+		if (request()->has('orderId') && request()->get('orderId') != '')
 		{
-			$query->where('id', '=', Input::get('orderId'));
+			$query->where('id', '=', request()->get('orderId'));
 		}
 
-		if (Input::has('status') && Input::get('status') != '')
+		if (request()->has('status') && request()->get('status') != '')
 		{
-			$query->where('status', Input::get('status'));
+			$query->where('status', request()->get('status'));
 		}
 
-		if (Input::has('date')) {
-			$date = explode('-', Input::get('date'));
+		if (request()->has('date')) {
+			$date = explode('-', request()->get('date'));
 			$date[0] = str_replace('/', '-', $date[0]);
 			if (isset($date[1])) {
 				$date[1] = str_replace('/', '-', $date[1]);					

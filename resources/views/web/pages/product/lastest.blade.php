@@ -10,6 +10,17 @@
 
 @section('content')
 <div id="main" style="padding-top: 30px;">
+    @if (count($sliders) > 0)
+        <div class="feature-adv">
+            <div class="slider">
+                <ul>
+                    @foreach($sliders as $item)
+                    <li><a href="{{ $item->link }}" title="{{ $item->name }}"><img src="{{ \App\Helpers\MyHtml::showImage($item->image, 'banner') }}" alt="{{ $item->name }}" /></a></li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
     <div class="container">
         <div class="heading">
             <div class="breadcrumb">

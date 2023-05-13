@@ -16,13 +16,13 @@ class PaymentController extends AdminController
 	{
 		$query = Payment::query();
 		$query->select('payments.*', 'users.name AS user_name', 'users.email AS user_email');
-		if (Input::has('type'))
+		if (request()->has('type'))
 		{
-			$query->where('type', Input::get('type'));
+			$query->where('type', request()->get('type'));
 		}
-		if (Input::has('user_name'))
+		if (request()->has('user_name'))
 		{
-			$query->where('users.name', 'like', '%'.Input::get('user_name').'%');
+			$query->where('users.name', 'like', '%'.request()->get('user_name').'%');
 		}
 		$query->join('users', 'users.id', '=', 'payments.user_id');
 		$data['payments'] = $query->orderBy('created_at', 'desc')->get();

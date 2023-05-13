@@ -216,7 +216,7 @@ class MyHtml extends HtmlFacade
 			$category = Category::findBySlug($route->parameter('category_slug'));
 
 			$attributes = [$category->slug];
-			$attributes = array_merge($attributes, Input::all());
+			$attributes = array_merge($attributes, request()->all());
 			$attributes['b'] = $brand->slug;
 
 			return action('ProductController@category', $attributes);
@@ -225,7 +225,7 @@ class MyHtml extends HtmlFacade
 		elseif ($route->hasParameter('brand_slug'))
 		{
 			$attributes = [$brand->slug];
-			$attributes = array_merge($attributes, Input::all());
+			$attributes = array_merge($attributes, request()->all());
 
 			return action('ProductController@brand', $attributes);
 		}

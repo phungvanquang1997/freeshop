@@ -2,17 +2,17 @@
 {!! Form::open(['method' => 'GET', 'url' => url('admin/order')]) !!}
     <div class="form-group">
         <div class="col-sm-2">
-            <input name="orderId" type="text" class=" form-control" value="{{ Input::has('orderId') ? Input::get('orderId') : '' }}" placeholder="Mã đơn hàng">
+            <input name="orderId" type="text" class=" form-control" value="{{ request()->has('orderId') ? request()->get('orderId') : '' }}" placeholder="Mã đơn hàng">
         </div>
         <div class="col-sm-2">
-            <input name="fullname" type="text" class=" form-control" value="{{ Input::has('fullname') ? Input::get('fullname') : '' }}" placeholder="Tên khách hàng">
+            <input name="fullname" type="text" class=" form-control" value="{{ request()->has('fullname') ? request()->get('fullname') : '' }}" placeholder="Tên khách hàng">
         </div>
         <div class="col-sm-2">
-            <input name="phone" type="text" class=" form-control" value="{{ Input::has('phone') ? Input::get('phone') : '' }}" placeholder="Số điện thoại">
+            <input name="phone" type="text" class=" form-control" value="{{ request()->has('phone') ? request()->get('phone') : '' }}" placeholder="Số điện thoại">
         </div>                
         <div class="col-sm-3">
             <div class="input-group date">
-                <input name="date" type="text" class=" form-control" id="datepicker" value="{{ Input::has('date') ? Input::get('date') : '' }}">
+                <input name="date" type="text" class=" form-control" id="datepicker" value="{{ request()->has('date') ? request()->get('date') : '' }}">
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </div>
@@ -23,7 +23,7 @@
 
                 <option value="">Tất cả</option>
                 @forelse(\App\Order::allStatus() as $key => $value)
-                    <option value="{{ $key }}" {{ Input::has('status') && Input::get('status') == $key ? 'selected="selected"' : '' }}>{{ $value }}</option>
+                    <option value="{{ $key }}" {{ request()->has('status') && request()->get('status') == $key ? 'selected="selected"' : '' }}>{{ $value }}</option>
                 @empty
                 @endforelse
 

@@ -73,7 +73,7 @@ class BrandController extends AdminController
 	public function generateSlug()
 	{
 		$slug = '';
-		$name = trim(Input::get('name'));
+		$name = trim(request()->get('name'));
 		if ($name !== '')
 		{
 			$slug = \Str::slug($name);

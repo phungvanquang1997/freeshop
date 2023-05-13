@@ -61,7 +61,7 @@ class SettingController extends AdminController
 			if ($key != '_token' && $key != '_method') {
 				$item = Setting::findByKey($key);
 				if ($item) {
-					$item->update(['value' => $value]);	
+					$item->update(['value' => $value ?? '']);	
 				} else {
 					$item = Setting::create([
 						'key' => $key,

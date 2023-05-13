@@ -1,6 +1,8 @@
 <?php 
 namespace App\Http\Controllers;
 
+use App\Banner;
+use App\BannerItem;
 use App\Brand;
 use App\Category;
 use App\Helpers\ImageManager;
@@ -72,11 +74,15 @@ class ProductController extends BaseController
 			'meta_keyword_detail' => $category->meta_keyword,
 			'meta_description_detail' => $category->meta_description,
 		];
+
+		// get banner
+		$sliders = Banner::where('type', '=', Banner::TYPE_SLIDER)->where('position', '=', Banner::POS_TOP_DOWN)->where('status', '=', Banner::STATUS_ACTIVE)->get()->first();
 		$data = [
 			'products'    => $products,
 			'category'    => $category,
 			'children'    => $children,
-			'hotProducts' => $hotProducts,			
+			'hotProducts' => $hotProducts,
+			'sliders' => $sliders ? $sliders->bannerItems()->where('status', '=', BannerItem::STATUS_ACTIVE)->get() : [],
 			'currentPage' => 1,
 		];
 		$data = array_merge($data, $metas_detail);
@@ -148,9 +154,14 @@ class ProductController extends BaseController
 		$metas_detail = [
 			'meta_title_detail' => 'Sản phẩm mới',
 		];
+
+		// get banner
+		$sliders = Banner::where('type', '=', Banner::TYPE_SLIDER)->where('position', '=', Banner::POS_TOP_DOWN)->where('status', '=', Banner::STATUS_ACTIVE)->get()->first();
+
 		$data = [
 			'products'    => $products,
 			'currentPage' => $currentPage,
+			'sliders' => $sliders ? $sliders->bannerItems()->where('status', '=', BannerItem::STATUS_ACTIVE)->get() : []
 		];
 		$data = array_merge($data, $metas_detail);
 
@@ -367,6 +378,11 @@ class ProductController extends BaseController
 		$relatedProducts = Product::whereIn('id', $Ids)
 				->orderBy('created_at', 'desc')
 				->get();
+
+		// get banner
+		$sliders = Banner::where('type', '=', Banner::TYPE_SLIDER)->where('position', '=', Banner::POS_TOP_DOWN)->where('status', '=', Banner::STATUS_ACTIVE)->get()->first();
+
+		// return $data['sliders'];
 		$data = [
 			'product' => $product,
 			'images'  => $product->images()->get(),
@@ -378,6 +394,7 @@ class ProductController extends BaseController
 			'comments' => $comments,
 			'relatedProducts' => $relatedProducts,
 			'viewedProducts' => $viewedProducts,
+			'sliders' => $sliders ? $sliders->bannerItems()->where('status', '=', BannerItem::STATUS_ACTIVE)->get() : []
 		];
 
 		$data = array_merge($data, $metas_detail);

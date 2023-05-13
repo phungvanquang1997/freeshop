@@ -46,7 +46,7 @@
     {!! App\Helpers\MyHtml::label('value', 'Thời gian hiệu lực', true) !!}
     <div class="col-sm-7">
         <div class="input-group date">
-            <input name="date_range" type="text" class=" form-control" id="datepicker" value="{{ Input::has('date_range') ? Input::get('date_range') : (isset($date_range) ? $date_range : '') }}" placeholder="">
+            <input name="date_range" type="text" class=" form-control" id="datepicker" value="{{ request()->has('date_range') ? request()->get('date_range') : (isset($date_range) ? $date_range : '') }}" placeholder="">
             <div class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </div>

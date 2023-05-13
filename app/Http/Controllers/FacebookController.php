@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\User;
+use Auth;
 use Illuminate\Contracts\Auth\Guard;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
@@ -14,34 +15,38 @@ class FacebookController extends Controller {
 		$this->auth = $auth;
 	}
 
-	public function auth()
+	public function loginUsingFacebook()
 	{
 		return Socialite::driver('facebook')->redirect();
 	}
 
-	public function login()
+	public function callbackFromFacebook()
 	{
-		$fb_user = Socialite::driver('facebook')->user();
-
-		$user = User::where('email', $fb_user->getEmail())->first();
-		if (!$user) {
-			$info = array(
-				'email'  => $fb_user->getEmail() != null ? $fb_user->getEmail() : '',
-				'name'   => $fb_user->getName(),
-				'facebook_id' => $fb_user->getId(),
-				'auth_token' => Str::random(16),
-			);
-			$user = User::create($info);
-		} else {
-			if ($user->name != $fb_user->getName()) {
-				$user->name = $fb_user->getName();
-				$user->save();
+		try {
+			$fb_user = Socialite::driver('facebook')->user();
+	
+			$user = User::where('email', $fb_user->getEmail())->first();
+			if (!$user) {
+				$info = array(
+					'email'  => $fb_user->getEmail() != null ? $fb_user->getEmail() : '',
+					'name'   => $fb_user->getName(),
+					'facebook_id' => $fb_user->getId(),
+					'auth_token' => Str::random(16),
+				);
+				$user = User::create($info);
+			} else {
+				if ($user->name != $fb_user->getName()) {
+					$user->name = $fb_user->getName();
+					$user->save();
+				}
 			}
+			Auth::loginUsingId($user->id);
+			// $this->auth->login($user, true);
+	
+			return redirect('/');
+		} catch (\Exception $e) {
+			return $e->getMessage();
 		}
-
-		$this->auth->login($user, true);
-
-		return redirect('/');
 	}
 
 }
