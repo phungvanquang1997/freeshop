@@ -40,8 +40,8 @@ class GoogleController extends Controller {
 					'group' => User::IS_GUEST,
 					'google_id' => $gg_user->getId(),
 					'facebook_id' => '',
-					'province_id' => '',
-					'district_id' => ''
+					'province_id' => 0,
+					'district_id' => 0
 				);
 				$user = User::create($info);
 			} else {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0b2a302092206d7f6b833d77ce0a8f96",
+    "content-hash": "ba23126d182b5f5f5112a7f763497d7d",
     "packages": [
         {
             "name": "bonecms/laravel-captcha",
@@ -6583,7 +6583,7 @@
         },
         {
             "name": "gloudemans/shoppingcart",
-            "version": "dev-main",
+            "version": "dev-production",
             "dist": {
                 "type": "path",
                 "url": "./packages/gloudemans/shoppingcart",
@@ -6674,7 +6674,7 @@
         },
         {
             "name": "illuminate/html",
-            "version": "dev-main",
+            "version": "dev-master",
             "dist": {
                 "type": "path",
                 "url": "./packages/illuminate/html",
@@ -7759,7 +7759,7 @@
         },
         {
             "name": "pqb/filemanager-laravel",
-            "version": "dev-main",
+            "version": "dev-production",
             "dist": {
                 "type": "path",
                 "url": "./packages/pqb/filemanager-laravel",
@@ -7840,7 +7840,7 @@
         },
         {
             "name": "roumen/sitemap",
-            "version": "dev-main",
+            "version": "dev-production",
             "dist": {
                 "type": "path",
                 "url": "./packages/roumen/sitemap",
@@ -9236,5 +9236,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.2.0"
 }
