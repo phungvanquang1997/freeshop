@@ -102,6 +102,17 @@ class UserController extends BaseController {
 			'name' => trim($request->get('name')),
 			'email' => trim($request->get('email')),
 			'password' => bcrypt(trim($request->get('password'))),
+
+			'auth_token' => '',
+			'phone' => '',
+			'address' => '',
+			'is_admin' => User::IS_GUEST,
+			'status' => User::STATUS_ACTIVE,
+			'group' => User::IS_GUEST,
+			'google_id' => '',
+			'facebook_id' => '',
+			'province_id' => 0,
+			'district_id' => 0
 		]);
 
 		if ($user->id) {

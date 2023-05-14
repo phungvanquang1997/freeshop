@@ -32,6 +32,16 @@ class FacebookController extends Controller {
 					'name'   => $fb_user->getName(),
 					'facebook_id' => $fb_user->getId(),
 					'auth_token' => Str::random(16),
+
+					'phone' => '',
+					'address' => '',
+					'password' => '',
+					'is_admin' => User::IS_GUEST,
+					'status' => User::STATUS_ACTIVE,
+					'group' => User::IS_GUEST,
+					'google_id' => '',
+					'province_id' => 0,
+					'district_id' => 0
 				);
 				$user = User::create($info);
 			} else {
