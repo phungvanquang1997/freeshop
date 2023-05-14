@@ -32,7 +32,16 @@ class GoogleController extends Controller {
 					'email'  => $gg_user->getEmail(),
 					'name'   => $gg_user->getName(),
 					'auth_token' => Str::random(16),
-					'phone' => ''
+					'phone' => '',
+					'address' => '',
+					'password' => '',
+					'is_admin' => User::IS_GUEST,
+					'status' => User::STATUS_ACTIVE,
+					'group' => User::IS_GUEST,
+					'google_id' => $gg_user->getId(),
+					'facebook_id' => '',
+					'province_id' => '',
+					'district_id' => ''
 				);
 				$user = User::create($info);
 			} else {
