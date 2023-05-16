@@ -36,7 +36,20 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/cart.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/product.detail.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
+
+<!-- Start Slick Slider -->
+<link rel="stylesheet" href="{{ asset('fancybox3/jquery.fancybox.css') }}">
+<link rel="stylesheet" href="{{ asset('slick/slick-style.css') }}" />
+<link rel="stylesheet" href="{{ asset('slick/slick-theme.css') }}" />
+<link rel="stylesheet" href="{{ asset('slick/slick.css') }}" />
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script src="{{ asset('slick/slick.min.js') }}"></script>
+<script src="{{ asset('fancybox3/jquery.fancybox.js') }}"></script>
+<!-- End Slick Slider -->
+
+
 <script type="text/javascript"  src="{{ asset('js/main.min.js') }}" defer></script>
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 <script type="text/javascript">
