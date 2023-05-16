@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Http\Controllers;
 
 use App\Banner;
@@ -24,7 +24,7 @@ class ProductController extends BaseController
 {
 
     public function __construct()
-    {        
+    {
         parent::__construct();
     }
 
@@ -43,7 +43,7 @@ class ProductController extends BaseController
 		->where('slug', '=', $slug)
 		->get()->first();
 
-		if (!$category) {			
+		if (!$category) {
 			return redirect('/');
 		}
 
@@ -59,11 +59,11 @@ class ProductController extends BaseController
 		if (!is_null($isNew)) {
 			$query->where('is_new', '=', 1);
 		}
-		
+
 		if (!is_null($isBestseller)) {
 			$query->where('is_bestseller', '=', 1);
 		}
-				
+
 		$query->orderBy('created_at', 'desc');
 		$products = $query->paginate(self::PAGINATION_ITEM_PER_PAGE);
 
@@ -96,7 +96,7 @@ class ProductController extends BaseController
 		->where('slug', '=', $slug)
 		->get()->first();
 
-		if (!$category) {			
+		if (!$category) {
 			return redirect('/');
 		}
 
@@ -105,17 +105,17 @@ class ProductController extends BaseController
 
 		$strIds = Category::categoriesIds($category->id);
 		$arrayID = @array_map('intval', @explode(',', $strIds));
-		$children = $category->children()->orderBy('order', 'asc')->get();		
+		$children = $category->children()->orderBy('order', 'asc')->get();
 
 		$query = Product::whereIn('category_id', $arrayID);
 		if (!is_null($isNew)) {
 			$query->where('is_new', '=', 1);
 		}
-		
+
 		if (!is_null($isBestseller)) {
 			$query->where('is_bestseller', '=', 1);
 		}
-				
+
 		$query->orderBy('created_at', 'desc');
 	    Paginator::currentPageResolver(function () use ($currentPage) {
 	        return $currentPage;
@@ -145,12 +145,12 @@ class ProductController extends BaseController
 	{
 	    Paginator::currentPageResolver(function () use ($currentPage) {
 	        return $currentPage;
-	    });	
+	    });
 
 		$products = Product::where('is_new', '=', 1)
 			->orderBy('created_at', 'desc')
 			->paginate(self::PAGINATION_ITEM_PER_PAGE);
-		
+
 		$metas_detail = [
 			'meta_title_detail' => 'Sản phẩm mới',
 		];
@@ -174,23 +174,23 @@ class ProductController extends BaseController
 		->where('slug', '=', $slug)
 		->get()->first();
 
-		if (!$category) {			
+		if (!$category) {
 			return redirect('/');
 		}
 
 		$strIds = Category::categoriesIds($category->id);
 		$arrayID = @array_map('intval', @explode(',', $strIds));
-		$children = $category->children()->orderBy('order', 'asc')->get();	
+		$children = $category->children()->orderBy('order', 'asc')->get();
 
 	    Paginator::currentPageResolver(function () use ($currentPage) {
 	        return $currentPage;
-	    });	
+	    });
 
 		$products = Product::whereIn('category_id', $arrayID)
 			->IsBestSeller()
 			->orderBy('created_at', 'desc')
 			->paginate(self::PAGINATION_ITEM_PER_PAGE);
-		
+
 		$metas_detail = [
 			'meta_title_detail' => $category->meta_title,
 			'meta_keyword_detail' => $category->meta_keyword,
@@ -223,7 +223,7 @@ class ProductController extends BaseController
 				return redirect('/');
 			}
 		}
-		unset($tagArr[0]);		
+		unset($tagArr[0]);
 		$dataSlug = @implode('-', $tagArr);
 		$tag = ProductTag::where('product_id', $productId)->where('slug', 'like', '%' . $dataSlug .'%')->get()->first();
 		if (!$tag) {
@@ -232,15 +232,15 @@ class ProductController extends BaseController
 
 		$query = Product::query();
 
-		$query->where('tags_slug', 'like', '%' . $dataSlug .'%')->orderBy('created_at', 'desc');		
+		$query->where('tags_slug', 'like', '%' . $dataSlug .'%')->orderBy('created_at', 'desc');
 	    Paginator::currentPageResolver(function () use ($currentPage) {
 	        return $currentPage;
 	    });
-	
+
 		$products = $query->paginate(self::PAGINATION_ITEM_PER_PAGE);
-		
+
 		$metas_detail = [
-			'meta_title_detail' => isset($tag->title) ? $tag->title : 'Sản phẩm',			
+			'meta_title_detail' => isset($tag->title) ? $tag->title : 'Sản phẩm',
 		];
 
 		$data = [
@@ -268,7 +268,7 @@ class ProductController extends BaseController
 		$categoryProducts = [];
 		foreach ($categories as $category) {
 			$strIds = Category::categoriesIds($category->id);
-			$arrayID = @array_map('intval', @explode(',', $strIds));	
+			$arrayID = @array_map('intval', @explode(',', $strIds));
 			$items = Product::whereIn('category_id', $arrayID)
 				->orderBy('created_at', 'desc')
 				->limit(12)->IsBestSeller()->get();
@@ -316,7 +316,7 @@ class ProductController extends BaseController
 
 	public function details($id, $slug)
 	{
-		$product = Product::findBySlug($slug);		
+		$product = Product::findBySlug($slug);
 		if (!$product) {
 			return redirect('/');
 		}
@@ -337,11 +337,11 @@ class ProductController extends BaseController
             $tmpProduct = $viewedProducts;
         } else {
         	$tmpProduct[] = $product;
-        }        
+        }
 
         Cookie::queue(Cookie::make('viewedProducts', json_encode($tmpProduct), 60));
         $viewedProducts = json_decode(Cookie::get('viewedProducts'));
-				
+
 		$category = $product->category()->first();
 
 		$related = Product::where('category_id', $product->category_id)
@@ -390,6 +390,7 @@ class ProductController extends BaseController
 			'hotline' => $hotline,
 			'category' => $category,
 			'saler_phone' => $saler_phone,
+            'page_name' => 'product_detail',
 			'lasts' => $lasts,
 			'comments' => $comments,
 			'relatedProducts' => $relatedProducts,

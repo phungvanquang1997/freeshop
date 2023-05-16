@@ -37,16 +37,20 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/product.detail.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
 
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
 <!-- Start Slick Slider -->
+@if (isset($page_name) && $page_name == 'product_detail')
 <link rel="stylesheet" href="{{ asset('fancybox3/jquery.fancybox.css') }}">
 <link rel="stylesheet" href="{{ asset('slick/slick-style.css') }}" />
 <link rel="stylesheet" href="{{ asset('slick/slick-theme.css') }}" />
 <link rel="stylesheet" href="{{ asset('slick/slick.css') }}" />
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
 <script src="{{ asset('slick/slick.min.js') }}"></script>
 <script src="{{ asset('fancybox3/jquery.fancybox.js') }}"></script>
+@endif
+
+
 <!-- End Slick Slider -->
 
 
