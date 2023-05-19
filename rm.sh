@@ -1,1 +1,1 @@
-cd .. && rm -f composer.json && rm -rf app/Providers/ && rm -rf app/Http/Controllers && rm -f config/app.php
+cd .. && rm -f composer.json && rm -rf app/Providers/ && rm -rf app/Http/Controllers && rm -f config/app.php && rm -rf .git/

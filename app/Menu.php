@@ -11,6 +11,7 @@ class Menu extends Model
 	const STATUS_ACTIVE = 1;
 	const STATUS_INACTIVE = 0;
 	const STATUS_INIT = 1;
+	const STATUS_CATEGORY = 5;
 
 	const POS_TOP = 1;
 	const POS_BOTTOM_LEFT = 2;

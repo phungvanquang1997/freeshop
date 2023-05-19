@@ -14,7 +14,7 @@ class TopNavComposer
 		$menu = Menu::where('position', Menu::POS_BOTTOM_LEFT)->where('status', Menu::STATUS_ACTIVE)->where('lang_id', Session('lang', 'vi'))->first();
 		$html = '';
 		if($menu) {
-			$parents = $menu->menuItems()->where('parent_id', 0)->where('status', Menu::STATUS_ACTIVE)->orderBy('ordering', 'asc')->get();
+			$parents = $menu->menuItems()->where('parent_id', 0)->where('status', Menu::STATUS_CATEGORY)->orderBy('ordering', 'asc')->get();
 			$html = $this->generateParentHtml($parents);
 		}
 		$data['mainMenu'] = $html;
@@ -24,7 +24,7 @@ class TopNavComposer
 	protected function generateParentHtml($parents = [])
 	{
 		$html = '';
-		$html = '<ul class="nav navbar-nav">';
+		$html = '<ul class="nav navbar-nav" style="font-size: 12px;">';
 		foreach ($parents as $key => $item) {
 			$children = null;
             $children = MenuItem::getChildren($item->id, false);
