@@ -108,6 +108,59 @@
 	                        </button>
 	                        <span>DANH MỤC SẢN PHẨM </span>
 	                    </div>
+						<style>
+							@media (max-width: 768px) {
+								.category_menu_pc {
+									display: none;
+								}
+							}
+							@media (min-width: 768px) {
+								.category_menu_sp {
+									display: none;
+								}
+							}
+							.category_menu_pc {
+								list-style-type: none;
+								margin: 0;
+								padding: 0;
+								width: 200px;
+							}
+							.category_menu_pc>li {
+								float: left;
+								/* padding: 9px 10px; */
+								width: 100%;
+								position: relative;
+							}
+							.right_sliding {
+								display: none;
+								background: #fff
+							}
+							.right_sliding > li {
+								margin: 1rem;
+							}
+							.right_sliding > li > a:hover {
+								color: #ed145b
+							}
+							.category_menu_pc li a {
+								color: #000;
+								font-size: 14px;
+								text-decoration: none;
+							}
+							.fa.fa-arrow-right {
+								float: right;
+								font-size: 10px;
+								margin: 7px 0 0;
+							}
+							.category_menu_pc>li>ul {
+								position: absolute;
+								position: absolute;
+								right: -220px;
+								top: 6px;
+							}
+							.category_menu_pc>li:hover>ul {
+								display: block;
+							}
+						</style>
 	                    <nav class="collapse navbar-collapse" id="nav">
 	                   		{!! $mainMenu !!}
 	                        <!-- end menu -->

@@ -24,7 +24,7 @@ class TopNavComposer
 	protected function generateParentHtml($parents = [])
 	{
 		$html = '';
-		$html = '<ul class="nav navbar-nav" style="font-size: 12px;">';
+		$html = '<ul class="nav navbar-nav category_menu_sp">';
 		foreach ($parents as $key => $item) {
 			$children = null;
             $children = MenuItem::getChildren($item->id, false);
@@ -45,8 +45,21 @@ class TopNavComposer
             $html .= '</li>';
 		}
 		$html .= '</ul>';
+		// pc version screen
+
+		$html .= '<ul class="nav navbar-nav category_menu_pc">';
+		$html .= '<li>';
+		$html .= '<a class="cat_name" href="#">DANH MỤC SẢN PHẨM</a>';
+		$html .= '<ul class="right_sliding">';
+		foreach ($parents as $key => $item) {
+			$html .= '<li><a href="' . url($item->link) . '" >' . $item->name . '</a></li>';
+		}
+		$html .= '</ul>';
+		$html .= '</li>';
+		$html .= '</ul>';
 		return $html;
 	}
+
 	protected function generateChildren($children = [])
 	{
 		$html = '';
