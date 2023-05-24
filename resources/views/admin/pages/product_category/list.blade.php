@@ -97,7 +97,7 @@
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->slug }}</td>
-                            <td>{{ $category->parent->name or null }}</td>
+                            <td>{{ optional($category->parent)->name }}</td>
                             <td>{{ $category->order }}</td>
                             <td>
                                 {!! App\Helpers\MyHtml::btnEdit('admin/category/product/' . $category->id . '/edit/') !!}

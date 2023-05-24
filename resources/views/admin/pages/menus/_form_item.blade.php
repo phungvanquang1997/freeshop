@@ -16,7 +16,7 @@
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('name', trans('lang.name'), true) !!}
     <div class="col-sm-7">
-        {!! Form::text('name', old('name') ? old('name') : isset($menuItem) ? $menuItem->name : null, ['class' => 'form-control']) !!}
+        {!! Form::text('name', old('name') ?? isset($menuItem) ? $menuItem->name : null, ['class' => 'form-control']) !!}
     </div>
 </div>
 <div class="form-group">
@@ -33,24 +33,24 @@
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('link', trans('lang.static_link'), true) !!}
     <div class="col-sm-7">
-        {!! Form::text('link', old('link') ? old('link') : isset($menuItem) ? $menuItem->link : null, ['class' => 'form-control']) !!}
+        {!! Form::text('link', old('link') ?? isset($menuItem) ? $menuItem->link : null, ['class' => 'form-control']) !!}
     </div>
 </div>
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('icon', trans('lang.icon'), false) !!}
     <div class="col-sm-7">
-        {!! Form::text('icon', old('icon') ? old('icon') : isset($menuItem) ? $menuItem->icon : null, ['class' => 'form-control']) !!}
+        {!! Form::text('icon', old('icon') ?? isset($menuItem) ? $menuItem->icon : null, ['class' => 'form-control']) !!}
     </div>
 </div>
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('status', trans('lang.status'), false) !!}
     <div class="col-sm-7">
-        {!! Form::select('status', $status, old('status') ? old('status') : isset($menuItem) ? $menuItem->status : null, ['class' => 'form-control']) !!}
+        {!! Form::select('status', $status, old('status') ?? isset($menuItem) ? $menuItem->status : null, ['class' => 'form-control']) !!}
     </div>
 </div>
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('ordering', trans('lang.position'), false) !!}
     <div class="col-sm-7">
-        {!! Form::text('ordering', old('ordering') ? old('ordering') : isset($menuItem) ? $menuItem->ordering : null, ['class' => 'form-control']) !!}
+        {!! Form::text('ordering', old('ordering') ?? isset($menuItem) ? $menuItem->ordering : null, ['class' => 'form-control']) !!}
     </div>
 </div>

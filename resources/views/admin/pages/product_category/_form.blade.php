@@ -13,14 +13,14 @@
 
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('name', trans('lang.name'), true) !!}
-    {!! App\Helpers\MyHtml::text('name', old('name') ? old('name') : (isset($category) ? $category->name : null),
+    {!! App\Helpers\MyHtml::text('name', old('name') ?? (isset($category) ? $category->name : null),
     ['class' =>
     'form-control']) !!}
 </div>
 
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('slug', 'Slug', false) !!}
-    {!! App\Helpers\MyHtml::text('slug', old('slug') ? old('slug') : (isset($category) ? $category->slug : null),
+    {!! App\Helpers\MyHtml::text('slug', old('slug') ?? (isset($category) ? $category->slug : null),
     ['class' =>
     'form-control']) !!}
 </div>
@@ -43,37 +43,37 @@
 
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('content', 'Nội dung') !!}
-    {!! App\Helpers\MyHtml::textarea('content', old('content') ? old('content') : (isset($category) ?
+    {!! App\Helpers\MyHtml::textarea('content', old('content') ?? (isset($category) ?
     $category->content : null), ['class' => 'tinymce category-des form-control']) !!}
 </div>
 
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('order', trans('lang.num_oder')) !!}
-    {!! App\Helpers\MyHtml::input('number', 'order', old('order') ? old('order') : (isset($category) ? $category->order
+    {!! App\Helpers\MyHtml::input('number', 'order', old('order') ?? (isset($category) ? $category->order
     : null), ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('show_home_block', 'Hiển thị trên trang chủ', false) !!}
     <div class="col-sm-7">
-        {!! \Form::radio('show_home_block', 0, old('show_home_block') ? old('show_home_block'): (isset($category) && $category->show_home_block == 0) ? true : false, ['class' => 'field']) !!} Không hiển thị
-        {!! \Form::radio('show_home_block', 1, old('show_home_block') ? old('show_home_block'): (isset($category) && $category->show_home_block == 1) ? true : false, ['class' => 'field']) !!} Hiển thị
+        {!! \Form::radio('show_home_block', 0, old('show_home_block') ?? (isset($category) && $category->show_home_block == 0) ? true : false, ['class' => 'field']) !!} Không hiển thị
+        {!! \Form::radio('show_home_block', 1, old('show_home_block') ?? (isset($category) && $category->show_home_block == 1) ? true : false, ['class' => 'field']) !!} Hiển thị
     </div>
 </div>
 
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('is_deal', 'Hot Deal', false) !!}
     <div class="col-sm-7">
-        {!! \Form::radio('is_deal', 0, old('is_deal') ? old('is_deal'): (isset($category) && $category->is_deal == 0) ? true : false, ['class' => 'field']) !!} Không hiển thị
-        {!! \Form::radio('is_deal', 1, old('is_deal') ? old('is_deal'): (isset($category) && $category->is_deal == 1) ? true : false, ['class' => 'field']) !!} Hiển thị Hot Deal
+        {!! \Form::radio('is_deal', 0, old('is_deal') ?? (isset($category) && $category->is_deal == 0) ? true : false, ['class' => 'field']) !!} Không hiển thị
+        {!! \Form::radio('is_deal', 1, old('is_deal') ?? (isset($category) && $category->is_deal == 1) ? true : false, ['class' => 'field']) !!} Hiển thị Hot Deal
     </div>
 </div>
 
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('status', 'Trạng thái', false) !!}
     <div class="col-sm-7">
-        {!! \Form::radio('status', 1, old('status') ? old('status'): (isset($category) && $category->status == 1) ? true : false, ['class' => 'field']) !!} Kích hoạt
-        {!! \Form::radio('status', 0, old('status') ? old('status'): (isset($category) && $category->status == 0) ? true : false, ['class' => 'field']) !!} Vô hiệu
+        {!! \Form::radio('status', 1, old('status') ?? (isset($category) && $category->status == 1) ? true : false, ['class' => 'field']) !!} Kích hoạt
+        {!! \Form::radio('status', 0, old('status') ?? (isset($category) && $category->status == 0) ? true : false, ['class' => 'field']) !!} Vô hiệu
     </div>
 </div>
 
@@ -81,21 +81,21 @@
 
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('meta_title', '[SEO] title', true) !!}
-    {!! App\Helpers\MyHtml::text('meta_title', old('meta_title') ? old('meta_title') : (isset($category) ? $category->meta_title : null),
+    {!! App\Helpers\MyHtml::text('meta_title', old('meta_title') ?? (isset($category) ? $category->meta_title : null),
     ['class' =>
     'form-control']) !!}
 </div>
 
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('meta_keyword', '[SEO] Keyword', true) !!}
-    {!! App\Helpers\MyHtml::text('meta_keyword', old('meta_keyword') ? old('meta_keyword') : (isset($category) ? $category->meta_keyword : null),
+    {!! App\Helpers\MyHtml::text('meta_keyword', old('meta_keyword') ?? (isset($category) ? $category->meta_keyword : null),
     ['class' =>
     'form-control']) !!}
 </div>
 
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('meta_description', '[SEO] description', true) !!}
-    {!! App\Helpers\MyHtml::text('meta_description', old('meta_description') ? old('meta_description') : (isset($category) ? $category->meta_description : null),
+    {!! App\Helpers\MyHtml::text('meta_description', old('meta_description') ?? (isset($category) ? $category->meta_description : null),
     ['class' =>
     'form-control']) !!}
 </div>

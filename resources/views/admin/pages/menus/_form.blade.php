@@ -16,18 +16,18 @@
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('name', trans('lang.name'), true) !!}
     <div class="col-sm-7">
-        {!! Form::text('name', old('name') ? old('name') : isset($menu) ? $menu->name : null, ['class' => 'form-control']) !!}
+        {!! Form::text('name', old('name') ?? isset($menu) ? $menu->name : null, ['class' => 'form-control']) !!}
     </div>
 </div>
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('position', trans('lang.position'), true) !!}
     <div class="col-sm-7">
-        {!! Form::select('position', \App\Menu::$positions, old('position') ? old('position') : isset($menu) ? $menu->position : null, ['class' => 'form-control']) !!}
+        {!! Form::select('position', \App\Menu::$positions, old('position') ?? isset($menu) ? $menu->position : null, ['class' => 'form-control']) !!}
     </div>
 </div>
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('status', trans('lang.status'), true) !!}
     <div class="col-sm-7">
-        {!! Form::select('status', $status, old('status') ? old('status') : isset($menu) ? $menu->status : null, ['class' => 'form-control']) !!}
+        {!! Form::select('status', $status, old('status') ?? isset($menu) ? $menu->status : null, ['class' => 'form-control']) !!}
     </div>
 </div>

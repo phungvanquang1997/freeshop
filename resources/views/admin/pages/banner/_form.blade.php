@@ -16,26 +16,26 @@
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('name', trans('lang.name'), true) !!}
     <div class="col-sm-7">
-        {!! Form::text('name', old('name') ? old('name') : isset($banner) ? $banner->name : null, ['class' => 'form-control']) !!}
+        {!! Form::text('name', old('name') ?? isset($banner) ? $banner->name : null, ['class' => 'form-control']) !!}
     </div>
 </div>
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('position', trans('lang.position'), false) !!}
     <div class="col-sm-7">
-        {!! Form::select('position', \App\Banner::$positions, old('position') ? old('position') : isset($banner) ? $banner->position : null, ['class' => 'form-control']) !!}
+        {!! Form::select('position', \App\Banner::$positions, old('position') ?? isset($banner) ? $banner->position : null, ['class' => 'form-control']) !!}
     </div>
 </div>
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('type', 'Kiểu', false) !!}
     <div class="col-sm-7">
-        {!! Form::radio('type', \App\Banner::TYPE_BANNER, old('type') ? old('type'): (isset($banner) && $banner->type == \App\Banner::TYPE_BANNER) ? true : false, ['class' => 'field']) !!} Banner
-        {!! Form::radio('type', \App\Banner::TYPE_SLIDER, old('type') ? old('type'): (isset($banner) && $banner->type == \App\Banner::TYPE_SLIDER) ? true : false, ['class' => 'field']) !!} Slider
-        {!! Form::radio('type', \App\Banner::TYPE_ADS, old('type') ? old('type'): (isset($banner) && $banner->type == \App\Banner::TYPE_ADS) ? true : false, ['class' => 'field']) !!} Ads
+        {!! Form::radio('type', \App\Banner::TYPE_BANNER, old('type') ?? (isset($banner) && $banner->type == \App\Banner::TYPE_BANNER) ? true : false, ['class' => 'field']) !!} Banner
+        {!! Form::radio('type', \App\Banner::TYPE_SLIDER, old('type') ?? (isset($banner) && $banner->type == \App\Banner::TYPE_SLIDER) ? true : false, ['class' => 'field']) !!} Slider
+        {!! Form::radio('type', \App\Banner::TYPE_ADS, old('type') ?? (isset($banner) && $banner->type == \App\Banner::TYPE_ADS) ? true : false, ['class' => 'field']) !!} Ads
     </div>
 </div>
 <div class="form-group">
     {!! App\Helpers\MyHtml::label('status', trans('lang.status'), false) !!}
     <div class="col-sm-7">
-        {!! Form::select('status', $status, old('status') ? old('status') : isset($banner) ? $banner->status : null, ['class' => 'form-control']) !!}
+        {!! Form::select('status', $status, old('status') ?? isset($banner) ? $banner->status : null, ['class' => 'form-control']) !!}
     </div>
 </div>

