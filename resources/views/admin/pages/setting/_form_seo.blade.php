@@ -60,7 +60,7 @@
 
     <div class="form-group">
         <div class="col-sm-3 text-right">
-        {!! Form::label('google_analytic_code', 'Mã google analytic', false) !!}
+        {!! Form::label('google_analytic_code', 'Mã google tag manager', false) !!}
         </div>
         <div class="col-sm-7">
             <div class="form-group">

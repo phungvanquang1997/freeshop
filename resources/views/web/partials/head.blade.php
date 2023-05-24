@@ -50,6 +50,11 @@
 <script src="{{ asset('fancybox3/jquery.fancybox.js') }}"></script>
 @endif
 
+{{-- Google tag manager 2 --}}
+@if (isset($google_tag_manager))
+{!! $google_tag_manager !!}
+@endif
+
 
 <!-- End Slick Slider -->
 

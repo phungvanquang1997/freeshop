@@ -106,7 +106,7 @@
 	                        <span class="icon-bar"></span>
 	                        <span class="icon-bar"></span>
 	                        </button>
-	                        <span>DANH MỤC SẢN PHẨM </span>
+	                        <span>DANH MỤC SẢN PHẨM</span>
 	                    </div>
 						<style>
 							@media (max-width: 768px) {
@@ -119,19 +119,27 @@
 									display: none;
 								}
 							}
-							.category_menu_pc {
-								list-style-type: none;
-								margin: 0;
-								padding: 0;
-								width: 200px;
+							.bottom_sliding {
+								position: absolute;
+								right: -34px;
+								z-index: 2;
+								border: 1px solid #ccc;
+								display: none;
+								background: #fff
 							}
-							.category_menu_pc>li {
-								float: left;
-								/* padding: 9px 10px; */
-								width: 100%;
-								position: relative;
+							.bottom_sliding > li {
+								margin: 1rem;
+							}
+							.bottom_sliding > li > a:hover {
+								color: #ed145b
 							}
 							.right_sliding {
+								position: absolute;
+								left: 47px !important;
+								top: 42px!important;
+								width: 300px!important;
+								z-index: 2;
+								border: 1px solid #ccc;
 								display: none;
 								background: #fff
 							}
@@ -150,12 +158,6 @@
 								float: right;
 								font-size: 10px;
 								margin: 7px 0 0;
-							}
-							.category_menu_pc>li>ul {
-								position: absolute;
-								position: absolute;
-								right: -220px;
-								top: 6px;
 							}
 							.category_menu_pc>li:hover>ul {
 								display: block;

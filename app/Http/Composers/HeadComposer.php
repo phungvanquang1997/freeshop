@@ -27,6 +27,11 @@ class HeadComposer
 		if ($meta_description)
 			$data['meta_description'] = $meta_description;
 
+		$google_tag_manager = Setting::findValueByKey('google_analytic_code');
+		if ($google_tag_manager) {
+			$data['google_tag_manager'] = $google_tag_manager;
+		}
+
 		$view->with($data);
 	}
 }
