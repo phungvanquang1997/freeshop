@@ -50,14 +50,11 @@
 <script src="{{ asset('fancybox3/jquery.fancybox.js') }}"></script>
 @endif
 
-{{-- Google tag manager 2 --}}
+<!-- End Slick Slider -->
+<!-- Google tag manager 2 -->
 @if (isset($google_tag_manager))
 {!! $google_tag_manager !!}
 @endif
-
-
-<!-- End Slick Slider -->
-
 
 <script type="text/javascript"  src="{{ asset('js/main.min.js') }}" defer></script>
 <meta name="csrf-token" content="{{ csrf_token() }}" />
