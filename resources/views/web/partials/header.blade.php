@@ -113,10 +113,16 @@
 								.category_menu_pc {
 									display: none;
 								}
+								#nav_pc {
+									display: none;
+								}
 							}
 							@media (min-width: 768px) {
 								.category_menu_sp {
 									display: none;
+								}
+								#nav {
+									display: none!important;
 								}
 							}
 							.bottom_sliding {
@@ -165,8 +171,11 @@
 						</style>
 	                    <nav class="collapse navbar-collapse" id="nav">
 	                   		{!! $mainMenu !!}
-	                        <!-- end menu -->
 	                    </nav>
+						<nav class="collapse navbar-collapse" id="nav_pc">
+							{!! $mainMenuPC !!}
+					 	</nav>
+						 <!-- end menu -->
 	                    <!-- /.navbar-collapse -->
 	                </div>
 	                <div class="col-lg-3 col-md-1 col-sm-1 col-xs-1">
