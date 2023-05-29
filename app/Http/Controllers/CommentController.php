@@ -50,6 +50,8 @@ class CommentController extends BaseController {
 			'email' => $request->get('comment_email'),
 			'star' => $request->get('comment_rating'),
 			'status' => 0,
+			'parent_id' => 0,
+			'level' => 0
 		];
 		if (!Auth::guest()) {
 			$data['user_id'] = Auth::Id();

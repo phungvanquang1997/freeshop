@@ -19,21 +19,23 @@ class PostController extends AdminController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index(Request $request)
 	{
 		$data['categories'] = Category::postType()->where('lang_id', $this->lang_id)->get();
 
 		$query = Post::query();
 		$query->where('lang_id', $this->lang_id);
 		if (request()->has('name')) {
-			if (request()->get('name') != '') {				
+			if (request()->get('name') != '') {
 				$query->where('title', 'like', '%' . trim(request()->get('name')) . '%');
-			}			
-		}		
-		if (request()->has('category_id')) $query->where('category_id', request()->get('category_id'));
-		if (request()->has('special')) $query->where('special', request()->get('special'));
+			}
+		}
+		if (request()->has('category_id'))
+			$query->where('category_id', request()->get('category_id'));
+		if (request()->has('special'))
+			$query->special($request->special);
 
-		$data['blogs'] = $query->orderBy('created_at', 'desc')->get();
+		$data['blogs'] = $query->get();
 
 		return view('admin.pages.cms.blog.list', $data);
 	}

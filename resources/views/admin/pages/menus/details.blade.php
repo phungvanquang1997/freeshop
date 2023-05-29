@@ -55,7 +55,7 @@
                             <td>
                                 <a href="{{ url('admin/menu/item-edit/' . $item->id) }}"
                                class="btn btn-xs btn-default font14 btn-action" data-toggle="tooltip" title="{{trans('lang.update')}}"><i class="fa fa-pencil"></i></a>
-                                <form method="POST" action="admin/menu/item-delete/{{ $item->id }}">
+                                <form method="POST" action="{{ url('admin/menu/item-delete/' . $item->id) }}">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <button type="submit" data-toggle="tooltip" title="{{trans('lang.del')}}" onclick="return del_menu_confirm()" class="btn btn-xs btn-danger font14"><i class="fa fa-trash-o"></i></button>
@@ -78,7 +78,7 @@
                                     <td>
                                         <a href="{{ url('admin/menu/item-edit/' . $child->id) }}"
                                        class="btn btn-xs btn-default font14 btn-action" data-toggle="tooltip" title="{{trans('lang.update')}}"><i class="fa fa-pencil"></i></a>
-                                        <form method="POST" action="admin/menu/item-delete/{{ $child->id }}" class="inline">
+                                        <form method="POST" action="{{ url('admin/menu/item-delete/' . $child->id) }}" class="inline">
                                             <input type="hidden" name="_method" value="DELETE">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <button type="submit" data-toggle="tooltip" title="{{trans('lang.del')}}" onclick="return del_menu_confirm()" class="btn btn-xs btn-danger font14"><i class="fa fa-trash-o"></i></button>
@@ -101,7 +101,7 @@
                                             <td>
                                                 <a href="{{ url('admin/menu/item-edit/' . $son->id) }}"
                                                class="btn btn-xs btn-default font14 btn-action" data-toggle="tooltip" title="{{trans('lang.update')}}"><i class="fa fa-pencil"></i></a>
-                                                <form method="POST" action="admin/menu/item-delete/{{ $son->id }}" class="inline">
+                                                <form method="POST" action="{{ url('admin/menu/item-delete/' . $son->id) }}" class="inline">
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <button type="submit" data-toggle="tooltip" title="{{trans('lang.del')}}" onclick="return del_menu_confirm()" class="btn btn-xs btn-danger font14"><i class="fa fa-trash-o"></i></button>
