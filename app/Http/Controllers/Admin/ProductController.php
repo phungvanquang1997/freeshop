@@ -41,13 +41,13 @@ class ProductController extends AdminController
 				$arrayID = @array_map('intval', @explode(',', $strIds));
 				$query->whereIn('category_id', $arrayID);
 				//$query->where('category_id', '=', request()->get('category_id'));	
-			}			
+			}
 		}
 
 		if (\request()->has('status')) {
-			if (in_array(\request()->get('status'), [0,1])) {
+			if (!is_null(\request()->get('status'))) {
 				$query->where('status', '=', \request()->get('status'));
-			}			
+			}
 		}
 
 		$data['products'] = $query->orderBy('created_at', 'desc')->get();

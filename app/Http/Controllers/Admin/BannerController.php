@@ -43,16 +43,16 @@ class BannerController extends AdminController
 	 */
 	public function store(Request $request)
 	{
-		$this->validate($request, [
+		$rules =  [
 			'name' => 'required',
-	    ],[
 			'name.required' => 'Tên quảng cáo là trường bắt buộc',
-	    ]);
+	    ];
+		$request->validate($rules);
 
-	    if ($validator->fails()) {
-	    	return redirect('admin/banner/create')->withErrors($validator)->withInput();
-		}
-		
+	    // if ($validator->fails()) {
+	    // 	return redirect('admin/banner/create')->withErrors($validator)->withInput();
+		// }
+
 		$banner = $request->all();
 		$banner['lang_id'] = $this->lang_id;
 		if (Banner::create($banner)) {

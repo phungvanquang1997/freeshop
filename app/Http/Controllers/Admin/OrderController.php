@@ -13,6 +13,7 @@ use Input;
 use Session;
 use App\Product;
 use App\Helpers\Gmail;
+use Carbon\Carbon;
 
 class OrderController extends AdminController
 {
@@ -25,29 +26,32 @@ class OrderController extends AdminController
 	public function index()
 	{
 		$query = Order::query();
-		if (request()->has('orderId') && request()->get('orderId') != '') {
+		if (!is_null(request()->get('orderId'))) {
 			$query->where('id', '=', request()->get('orderId'));
 		}
 
-		if (request()->has('status') && request()->get('status') != '') {
+		if (!is_null(request()->get('status'))) {
 			$query->where('status', request()->get('status'));
 		}
 
-		if (request()->has('fullname') && request()->get('fullname') != '') {			
-			$query->where('LOWER(name)', 'like', '%' . strtolower(trim(request()->get('fullname'))) . '%');
+		if (!is_null(request()->has('fugetame'))) {
+			$query->where('name', 'like', '%' . strtolower(trim(request()->get('fullname'))) . '%');
 		}
 
-		if (request()->has('phone') && request()->get('phone') != '') {
+		if (!is_null(request()->get('phone'))) {
 			$query->where('phone', 'like', '%' . trim(request()->get('phone')) . '%');
 		}
 
-		if (request()->has('date')) {
+		if (!is_null(request()->get('date'))) {
 			$date = explode('-', request()->get('date'));
 			$date[0] = str_replace('/', '-', $date[0]);
 			if (isset($date[1])) {
-				$date[1] = str_replace('/', '-', $date[1]);					
-				$query->whereDate('created_at', '>=', date('Y-m-d', strtotime(trim($date[0]))));
-				$query->whereDate('created_at', '<=', date('Y-m-d', strtotime(trim($date[1]))));
+				$date[1] = str_replace('/', '-', $date[1]);
+				$startDate = Carbon::parse($date[0])->format('Y-m-d');
+				$endDate = Carbon::parse($date[1])->format('Y-m-d');
+
+				$query->whereDate('created_at', '>=', $startDate);
+				$query->whereDate('created_at', '<=', $endDate);
 			}
 		}
 
