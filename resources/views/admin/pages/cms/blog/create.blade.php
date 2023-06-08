@@ -19,10 +19,9 @@
 
         <div class="box-body">
 
-            <form action="admin/article" method="POST" enctype="multipart/form-data" class="form-horizontal">
+            <form action="{{ url('admin/article') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                 @csrf
                 <div class="nav-tabs-custom">
-
                     <ul class="nav nav-tabs">
 
                         <li class="active"><a href="#tab_1" data-toggle="tab">{{ trans('lang.general_infos') }}</a></li>

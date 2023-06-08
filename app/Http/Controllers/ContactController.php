@@ -19,7 +19,7 @@ class ContactController extends BaseController {
 
 		$data = [
 			'pages' => $pages,
-			'captcha' => Captcha::html()
+			// 'captcha' => Captcha::html()
 		];		
 		return view('web.pages.pages.contact', $data);
 	}
@@ -31,7 +31,7 @@ class ContactController extends BaseController {
 			'name' => 'required',
 			'phone' => 'required',
 			'content' => 'required',
-			'captcha' => 'required|bone_captcha',
+			// 'captcha' => 'required|bone_captcha',
 		]);
 
 		$data = $request->all();
@@ -68,7 +68,7 @@ class ContactController extends BaseController {
 			'name' => 'required',
 			'phone' => 'required',
 			'content' => 'required',
-			'captcha' => 'required|bone_captcha',
+			// 'captcha' => 'required|bone_captcha',
 			'company' => 'required',
 			'address' => 'required',
 		]);

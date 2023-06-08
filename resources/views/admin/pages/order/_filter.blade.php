@@ -19,11 +19,14 @@
             </div>
         </div>
         <div class="col-sm-2">
+            @php
+                $status = request()->status ?? '';
+            @endphp
             <select data-type="status" class="form-control" name="status">
 
                 <option value="">Tất cả</option>
                 @forelse(\App\Order::allStatus() as $key => $value)
-                    <option value="{{ $key }}" {{ request()->has('status') && request()->get('status') == $key ? 'selected="selected"' : '' }}>{{ $value }}</option>
+                    <option value="{{ $key }}" {{ $status == $key ? 'selected="selected"' : '' }}>{{ $value }}</option>
                 @empty
                 @endforelse
 

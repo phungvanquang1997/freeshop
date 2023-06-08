@@ -70,7 +70,7 @@ Liên hệ với chúng tôi
                                 <label class="field-content">Nội dung: <span class="req">*</span></label>
                                 <div class="input-container"><textarea name="content" class="form-control" rows="5">{{old('content') !== null ? old('content') : ''}}</textarea></div>
                             </div>
-                            <div class="mt20">
+                            {{-- <div class="mt20">
                                 <div class="lable left">Mã xác nhận</div>
                                 <div class="input_checkout left">
                                     {!! $captcha !!}
@@ -82,7 +82,7 @@ Liên hệ với chúng tôi
                                 <div class="input-container">
                                     <input type="text" class="form-control" name="captcha" id="captcha" />
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="form-group">
                                 <button class="btn btn-primary btn-lg btn-block" value="GỬI" type="submit">GỬI</button>
                             </div>

@@ -48,7 +48,6 @@ class PostController extends AdminController {
 	public function create()
 	{
 		$data['categories'] = Category::postType()->where('lang_id', $this->lang_id)->pluck('name', 'id');
-
 		return view('admin.pages.cms.blog.create', $data);
 	}
 
@@ -67,6 +66,8 @@ class PostController extends AdminController {
 
 		$data = $request->all();
 		$data['lang_id'] = $this->lang_id;
+		$data['user_id'] = 0;
+		$data['type'] = 0;
 		$arrTags = [];
 		if ($data['tags'] != '') {
 			$tags = @explode(',', $data['tags']);
@@ -79,7 +80,7 @@ class PostController extends AdminController {
 		if (count($arrTags) > 0) {
 			$data['tags_slug'] = @implode(',', $arrTags);
 		}
-
+		// return $data;
 		$blog = Post::create($data);
 		if ($blog) {
 			if ($data['tags'] != '') {

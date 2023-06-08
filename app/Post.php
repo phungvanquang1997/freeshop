@@ -36,7 +36,8 @@ class Post extends Model {
 		'meta_keyword',
 		'tags_slug',
 		'meta_description',
-		'tags'
+		'tags',
+		'type'
 	];
 
 	protected $hidden = [];
